@@ -49,6 +49,7 @@ drawbossattack = fr"""   ,   ,
 
 
 playerhp = int(20)
+playermana = int(0)
 bosshp = int(20)
 
 swordsound = arcade.load_sound("sounds/sword.wav")
@@ -65,7 +66,7 @@ while True:
 
     #логика игрока
 
-    action = int(input(f"Твоё хп: {playerhp} Хп Босса: {bosshp}\n /1/ чтобы нанести урон! /2/ Восстановить здоровье!"))
+    action = int(input(f"Твоё хп: {playerhp}  Твоя мана: {playermana} Хп Босса: {bosshp}\n /1/ чтобы нанести урон! /2/ Восстановить здоровье!"))
     if action == 1:
 
         refteshscreen_time()
@@ -75,6 +76,7 @@ while True:
         arcade.play_sound(swordsound)
 
         pdamage = random.randint(1, 3)
+        playermana += pdamage
         bosshp -= pdamage
         print(f"{playername} нанёс {pdamage} урона! Здоровье Гриши: {bosshp}",end=" ")
 
