@@ -95,7 +95,7 @@ while True:
         pdamage = random.randint(1, 3)
         playermana += pdamage
         bosshp -= pdamage
-        print(f"{playername} нанёс {pdamage} урона! Здоровье Гриши: {bosshp}",end=" ")
+        print(f"{playername} нанёс {pdamage} урона! Здоровье Гриши: {bosshp}")
 
 
     elif action == 2:
@@ -117,7 +117,7 @@ while True:
 
              print(drawheal)
 
-             print(f"Хилка дала {playerheal} Текущее здоровье {playerhp} ",end=" ")
+             print(f"Хилка дала {playerheal} Текущее здоровье {playerhp} ")
 
 
     #логика босса
@@ -130,7 +130,7 @@ while True:
 
     bdamage = random.randint(1, 3)
     playerhp -= bdamage
-    print (f"Босс Гриша нанёс {bdamage} урона!",end=" ")
+    print (f"Босс Гриша нанёс {bdamage} урона!")
 
 
 
