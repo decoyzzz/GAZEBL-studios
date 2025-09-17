@@ -7,17 +7,21 @@ clear = lambda: os.system('cls')
 
 #LOX 2
 
+#Считывание и проверка длины имени игрока
 playername = input("Введи своё имя: ")
+while len(playername) > 5 or len(playername) < 3:
+    print("Размер имени от 3 до 5 символов...")
+    playername = input("Введи своё имя: ")
 
 def refteshscreen_time():
-    time.sleep(1.25)
+    time.sleep(1.35)
     clear()
 
 
 
 drawmain = fr"""
 ======================================
-|    {playername}    Монстр   
+|      {playername}           Гриша   
 |                 *   ,   ,        * |
 |  *     0           (\_o_/)  *      |
 |*      /|\   *      (  ^  )     *   |
@@ -27,18 +31,18 @@ drawmain = fr"""
 """
 
 
-drawsword = r"""
+drawsword = fr"""
 ======================================
 |   ↑             /\    ↑            |
 |        ↑        ||             ↑   |
 |                 ||                 |
-|               ======   ↑           |
-|    ↑       ↑    ||              ↑  |
+|                 ||   ↑             |
+|    ↑       ↑  ======             ↑ |
 |                 ||        ↑        |
 ======================================        
 """
 
-drawheal = r"""
+drawheal = fr"""
 ======================================
 |               _  _              ♥  |
 |  ♥          /` \/ `\     ♥         |
@@ -99,6 +103,7 @@ drawfireballfailed = """
 playerhp = int(20)
 playermana = int(0)
 bosshp = int(20)
+fire_dot_damage = -1
 
 swordsound = arcade.load_sound("sounds/sword.wav")
 healsound = arcade.load_sound("sounds/heal.wav")
