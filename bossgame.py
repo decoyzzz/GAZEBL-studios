@@ -182,7 +182,7 @@ while True:
 
     #меню выбора навыков
     elif action == 3:
-        skillchoise = int(input(f"\nДоступные навыки:\n[1] Фаерболл! [2] ICEnoName! [3] Вернуться назад!"))
+        skillchoise = int(input(f"\nДоступные навыки:\n[1] Фаерболл! [2] Ледяной осколок! [3] Вернуться назад!"))
 
 
         #выбор фаербола
@@ -200,6 +200,7 @@ while True:
             if random.random() < 0.5:
                 refteshscreen_time()
                 fire_dot_damage = 3
+                print(drawtemplate)
                 print(f"Босс загорелся на 3 хода!")
         #если не хватает маны
         elif skillchoise == 1 and playermana <3:
@@ -214,7 +215,8 @@ while True:
             refteshscreen_time()
             playermana -= 3
             bosshp -= icesharddamage
-            print(f"IceNoName нанёс {icesharddamage} Здоровье босса: {bosshp}")
+            print(drawtemplate)
+            print(f"Ледяной осколок нанёс {icesharddamage} Здоровье босса: {bosshp}")
 
             if random.random() < 0.5:
                 freezebuildup = 2
@@ -224,6 +226,7 @@ while True:
     #логика босса
     if freezebuildup > 0:
         refteshscreen_time()
+        print(drawtemplate)
         print(f"Босс заморожен на {freezebuildup} хода!")
         freezebuildup -= 1
     else:
@@ -240,8 +243,11 @@ while True:
 
     #Счётчик дот урона от фаерболла
     if fire_dot_damage >= 0:
+        refteshscreen_time()
         fire_dot_damage -= 1
         bosshp -= fire_dot_damage
+        print(drawtemplate)
+        print("Босс получает 1 урон от огня")
 
 
     if playerhp <= 0:
