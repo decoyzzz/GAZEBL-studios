@@ -103,6 +103,7 @@ drawfireballfailed = """
 playerhp = int(20)
 playermana = int(0)
 bosshp = int(20)
+fire_dot_damage = -1
 
 swordsound = arcade.load_sound("sounds/sword.wav")
 healsound = arcade.load_sound("sounds/heal.wav")
@@ -117,7 +118,6 @@ while True:
     pdamage = random.randint(1, 3)
     playerheal = random.randint(1, 3)
     fireballdamage = random.randint(2, 6)
-    fire_dot_damage = -1
 
     #Счётчик дот урона от фаерболла
     if fire_dot_damage >= 0:
