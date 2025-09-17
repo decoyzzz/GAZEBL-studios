@@ -78,12 +78,20 @@ bossattack = arcade.load_sound("sounds/bossattack.wav")
     #playerhp = int(999)
 
 while True:
+    #Переменные урона и хила вынес в начало цикла
+    pdamage = random.randint(1, 3)
+    playerheal = random.randint(1, 3)
+    fireballdamage = random.randint(2, 6)
+
+
+
+
     refteshscreen_time()
     print(drawmain)
 
     #логика игрока
 
-    action = int(input(f"Твоё хп: {playerhp}  Твоя мана: {playermana} Хп Босса: {bosshp}\n /1/ чтобы нанести урон! /2/ Восстановить здоровье!"))
+    action = int(input(f"Твоё хп: {playerhp}  Твоя мана: {playermana} Хп Босса: {bosshp}\n /1/ чтобы нанести урон! /2/ Восстановить здоровье! /3/ Фаерболл!"))
     if action == 1:
 
         refteshscreen_time()
@@ -92,14 +100,13 @@ while True:
 
         arcade.play_sound(swordsound)
 
-        pdamage = random.randint(1, 3)
         playermana += pdamage
         bosshp -= pdamage
         print(f"{playername} нанёс {pdamage} урона! Здоровье Гриши: {bosshp}")
 
 
     elif action == 2:
-        playerheal = random.randint(1, 3)
+
 
         if playerhp >= 20:
             playerhp -= playerheal
@@ -118,6 +125,20 @@ while True:
              print(drawheal)
 
              print(f"Хилка дала {playerheal} Текущее здоровье {playerhp} ")
+
+    elif action == 3 and playermana > 2.9:
+        bosshp -= fireballdamage
+        playermana -= 3
+        print (f"Нанесенно: {fireballdamage} Здоровье босса: {bosshp}")
+
+    elif action == 3 and playermana < 3:
+        playerhp -= 1
+        print (f"Фаерболл взорвался в руке и нанёс 1 урона! Текущее здоровье: {playerhp}")
+
+
+
+
+
 
 
     #логика босса
