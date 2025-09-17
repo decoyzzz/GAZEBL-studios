@@ -10,7 +10,7 @@ clear = lambda: os.system('cls')
 playername = input("Введи своё имя: ")
 
 def refteshscreen_time():
-    time.sleep(1)
+    time.sleep(1.25)
     clear()
 
 
@@ -40,12 +40,12 @@ drawsword = r"""
 
 drawheal = r"""
 ======================================
-|               _  _                 |
-|             /` \/ `\               |
-|             \      /               |
+|               _  _              ♥  |
+|  ♥          /` \/ `\     ♥         |
+|        ♥    \      /               |
 |              '.  .'                |
-|                \/                  |
-|                                    |
+|     ♥          \/             ♥    |
+|                      ♥             |
 ======================================
 """
 
@@ -62,11 +62,11 @@ drawbossattack = fr"""
 
 drawbossdead = fr"""
 ======================================
-|                  ,    ,            |
-|                 (\_o_/)            |
-|    <=====       (  ^  )            |
-|                 /|   |\            |
-|                                    |
+|           *      ,    ,   *        |
+|      X          (\_o_/)       X    |
+|                 ( X X )            |
+|          X      (  x  )            |
+|    *            /|   |\     *      |
 |                                    |
 ======================================    
 """
@@ -92,8 +92,12 @@ while True:
     playerheal = random.randint(1, 3)
     fireballdamage = random.randint(2, 6)
 
-
-
+    #Проверка на смерть босса
+    if bosshp < 1:
+        refteshscreen_time()
+        print(drawbossdead)
+        print(f"Ты убил босса!")
+        exit()
 
     refteshscreen_time()
     print(drawmain)
