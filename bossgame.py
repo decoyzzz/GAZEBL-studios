@@ -113,6 +113,7 @@ while True:
     pdamage = random.randint(1, 3)
     playerheal = random.randint(1, 3)
     fireballdamage = random.randint(2, 6)
+    fire_dot_damage = -1
 
     #Счётчик дот урона от фаерболла
     if fire_dot_damage >= 0:
