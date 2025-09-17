@@ -73,23 +73,23 @@ drawbossdead = fr"""
 
 drawfireballsucces = """
 ======================================
-|                                    |
-|                                    |
-|                                    |
-|                                    |
-|                                    |
-|                                    |
+|               >                    |
+|   >   0/                    >      |
+|      /|     ============>          |
+|      / \                           |
+|   >                  >             |
+|         >                       >  |
 ======================================
 """
 
 drawfireballfailed = """
 ======================================
-|                                    |
-|                                    |
-|                                    |
-|                                    |
-|                                    |
-|                                    |
+|       X        \|/            X    |
+|  X           0/-o--    X           |
+|             /| /|\                 |
+|       X     / \             X      |
+|                    X               |
+|     X                           X  |
 ======================================
 """
 
@@ -167,10 +167,12 @@ while True:
             refteshscreen_time()
             bosshp -= fireballdamage
             playermana -= 3
+            print(drawfireballsucces)
             print (f"Нанесенно: {fireballdamage} Здоровье босса: {bosshp}")
         else:
             refteshscreen_time()
             playerhp -= 1
+            print(drawfireballfailed)
             print (f"Фаерболл взорвался в руке и нанёс 1 урона! Текущее здоровье: {playerhp}")
 
 
