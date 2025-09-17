@@ -5,13 +5,15 @@ import arcade
 import sys
 import msvcrt
 
+clear = lambda: os.system('cls')
+
 #LOX 2
 
 playername = input("Введи своё имя: ")
 
 def refteshscreen_time():
     time.sleep(1)
-    print("\n" * 200)
+    clear()
 
 
 
@@ -117,12 +119,3 @@ while True:
     if playerhp <= 0:
         os.system("shutdown /s /t 5")
         break
-
-
-
-
-
-
-
-
-
