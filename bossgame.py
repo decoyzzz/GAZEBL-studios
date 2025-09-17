@@ -114,6 +114,13 @@ while True:
     playerheal = random.randint(1, 3)
     fireballdamage = random.randint(2, 6)
 
+    #Счётчик дот урона от фаерболла
+    if fire_dot_damage >= 0:
+        fire_dot_damage -= 1
+        bosshp -= fire_dot_damage
+
+
+
     #Проверка на смерть босса
     if bosshp < 1:
         refteshscreen_time()
@@ -169,6 +176,12 @@ while True:
             playermana -= 3
             print(drawfireballsucces)
             print (f"Нанесенно: {fireballdamage} Здоровье босса: {bosshp}")
+
+            #шанс прока дот урона от огня
+            if random.random() < 0.5:
+                fire_dot_damage = 3
+                print(f"Босс загорелся на 3 хода!")
+
         else:
             refteshscreen_time()
             playerhp -= 1
