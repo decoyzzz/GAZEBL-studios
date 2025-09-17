@@ -2,8 +2,6 @@ import random
 import os
 import time
 import arcade
-import sys
-import msvcrt
 
 clear = lambda: os.system('cls')
 
