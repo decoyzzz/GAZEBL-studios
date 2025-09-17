@@ -5,6 +5,7 @@ import arcade
 import sys
 import msvcrt
 
+#LOX 2
 
 playername = input("Введи своё имя: ")
 
