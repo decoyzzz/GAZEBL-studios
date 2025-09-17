@@ -127,11 +127,13 @@ while True:
              print(f"Хилка дала {playerheal} Текущее здоровье {playerhp} ")
 
     elif action == 3 and playermana > 2.9:
+        refteshscreen_time()
         bosshp -= fireballdamage
         playermana -= 3
         print (f"Нанесенно: {fireballdamage} Здоровье босса: {bosshp}")
 
     elif action == 3 and playermana < 3:
+        refteshscreen_time()
         playerhp -= 1
         print (f"Фаерболл взорвался в руке и нанёс 1 урона! Текущее здоровье: {playerhp}")
 
