@@ -50,9 +50,9 @@ playerhp = int(20)
 playermana = int(0)
 bosshp = int(20)
 
-#swordsound = arcade.load_sound("sounds/sword.wav")
-#healsound = arcade.load_sound("sounds/heal.wav")
-#bossattack = arcade.load_sound("sounds/bossattack.wav")
+swordsound = arcade.load_sound("sounds/sword.wav")
+healsound = arcade.load_sound("sounds/heal.wav")
+bossattack = arcade.load_sound("sounds/bossattack.wav")
 
 
 #if playername == "Аллах":
@@ -71,7 +71,7 @@ while True:
 
         print(drawsword)
 
-        #arcade.play_sound(swordsound)
+        arcade.play_sound(swordsound)
 
         pdamage = random.randint(1, 3)
         playermana += pdamage
@@ -92,7 +92,7 @@ while True:
         else:
              refteshscreen_time()
 
-             #arcade.play_sound(healsound)
+             arcade.play_sound(healsound)
 
              playerhp = min(playerheal + playerhp, 20)
 
@@ -107,7 +107,7 @@ while True:
 
     print(drawbossattack)
 
-    #arcade.play_sound(bossattack)
+    arcade.play_sound(bossattack)
 
     bdamage = random.randint(1, 3)
     playerhp -= bdamage
