@@ -132,13 +132,6 @@ while True:
     fireballdamage = random.randint(2, 6)
     icesharddamage = random.randint(1, 3)
 
-    #Счётчик дот урона от фаерболла
-    if fire_dot_damage >= 0:
-        fire_dot_damage -= 1
-        bosshp -= fire_dot_damage
-
-
-
     #Проверка на смерть босса
     if bosshp < 1:
         refteshscreen_time()
@@ -208,7 +201,6 @@ while True:
                 refteshscreen_time()
                 fire_dot_damage = 3
                 print(f"Босс загорелся на 3 хода!")
-
         #если не хватает маны
         elif skillchoise == 1 and playermana <3:
             refteshscreen_time()
@@ -226,29 +218,14 @@ while True:
 
             if random.random() < 0.5:
                 freezebuildup = 2
-
-
         elif skillchoise == 3:
             continue
-
-
-
-
-
-
-
-
-
-
-
 
     #логика босса
     if freezebuildup > 0:
         refteshscreen_time()
         print(f"Босс заморожен на {freezebuildup} хода!")
         freezebuildup -= 1
-
-
     else:
         refteshscreen_time()
 
@@ -261,6 +238,10 @@ while True:
         print (f"Босс Гриша нанёс {bdamage} урона!")
 
 
+    #Счётчик дот урона от фаерболла
+    if fire_dot_damage >= 0:
+        fire_dot_damage -= 1
+        bosshp -= fire_dot_damage
 
 
     if playerhp <= 0:
