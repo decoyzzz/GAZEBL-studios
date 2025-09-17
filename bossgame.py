@@ -113,6 +113,7 @@ while True:
     pdamage = random.randint(1, 3)
     playerheal = random.randint(1, 3)
     fireballdamage = random.randint(2, 6)
+    icesharddamage = random.randint(1, 3)
     fire_dot_damage = -1
 
     #Счётчик дот урона от фаерболла
@@ -134,7 +135,7 @@ while True:
 
     #логика игрока
 
-    action = int(input(f"Твоё хп: {playerhp} | Твоя мана: {playermana} | Хп Босса: {bosshp}\n [1] чтобы нанести урон! [2] Восстановить здоровье! [3] Фаерболл!"))
+    action = int(input(f"Твоё хп: {playerhp} | Твоя мана: {playermana} | Хп Босса: {bosshp}\n [1] чтобы нанести урон! [2] Восстановить здоровье! [3] Меню выбора навыков!"))
     if action == 1:
 
         refteshscreen_time()
@@ -170,38 +171,77 @@ while True:
              print(f"Хилка дала {playerheal} Текущее здоровье {playerhp} ")
 
 
+    #меню выбора навыков
     elif action == 3:
-        if playermana > 2.9:
+        skillchoise = int(input(f"Твоё хп: {playerhp} | Твоя мана: {playermana} | Хп Босса: {bosshp}\n [1] Фаерболл! [2] ICEnoName! [3] Вернуться назад!"))
+
+
+        #выбор фаербола
+        if skillchoise == 1:
             refteshscreen_time()
+
+            print(drawfireballsucces)
+
             bosshp -= fireballdamage
             playermana -= 3
-            print(drawfireballsucces)
+
             print (f"Нанесенно: {fireballdamage} Здоровье босса: {bosshp}")
 
             #шанс прока дот урона от огня
             if random.random() < 0.5:
+                refteshscreen_time()
                 fire_dot_damage = 3
                 print(f"Босс загорелся на 3 хода!")
 
-        else:
+        #если не хватает маны
+        elif skillchoise == 1 and playermana <3:
             refteshscreen_time()
             playerhp -= 1
             print(drawfireballfailed)
             print (f"Фаерболл взорвался в руке и нанёс 1 урона! Текущее здоровье: {playerhp}")
 
 
+        #ледяной урон
+        elif skillchoise == 2:
+            refteshscreen_time()
+            bosshp -= icesharddamage
+            print(f"IceNoName нанёс {icesharddamage} Здоровье босса: {bosshp}")
+
+            if random.random() < 0.5:
+                freezebuildup = 2
+
+
+        elif skillchoise == 3:
+            continue
+
+
+
+
+
+
+
+
+
+
+
 
     #логика босса
+    if freezebuildup > 0:
+        refteshscreen_time()
+        print(f"Босс заморожен на 2 хода!")
+        freezebuildup -= 1
 
-    refteshscreen_time()
 
-    print(drawbossattack)
+    else:
+        refteshscreen_time()
 
-    arcade.play_sound(bossattack)
+        print(drawbossattack)
 
-    bdamage = random.randint(1, 3)
-    playerhp -= bdamage
-    print (f"Босс Гриша нанёс {bdamage} урона!")
+        arcade.play_sound(bossattack)
+
+        bdamage = random.randint(1, 3)
+        playerhp -= bdamage
+        print (f"Босс Гриша нанёс {bdamage} урона!")
 
 
 
