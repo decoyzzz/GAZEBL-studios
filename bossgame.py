@@ -104,6 +104,7 @@ playerhp = int(20)
 playermana = int(0)
 bosshp = int(20)
 fire_dot_damage = -1
+freezebuildup = -1
 
 swordsound = arcade.load_sound("sounds/sword.wav")
 healsound = arcade.load_sound("sounds/heal.wav")
@@ -177,7 +178,7 @@ while True:
 
     #меню выбора навыков
     elif action == 3:
-        skillchoise = int(input(f"Твоё хп: {playerhp} | Твоя мана: {playermana} | Хп Босса: {bosshp}\n [1] Фаерболл! [2] ICEnoName! [3] Вернуться назад!"))
+        skillchoise = int(input(f"\nДоступные навыки:\n[1] Фаерболл! [2] ICEnoName! [3] Вернуться назад!"))
 
 
         #выбор фаербола
@@ -208,6 +209,7 @@ while True:
         #ледяной урон
         elif skillchoise == 2:
             refteshscreen_time()
+            playermana -= 3
             bosshp -= icesharddamage
             print(f"IceNoName нанёс {icesharddamage} Здоровье босса: {bosshp}")
 
@@ -232,7 +234,7 @@ while True:
     #логика босса
     if freezebuildup > 0:
         refteshscreen_time()
-        print(f"Босс заморожен на 2 хода!")
+        print(f"Босс заморожен на {freezebuildup} хода!")
         freezebuildup -= 1
 
 
