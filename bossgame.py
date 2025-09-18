@@ -179,7 +179,7 @@ while True:
                         playermana -= 3
                         bosshp -= icesharddamage
 
-                        print(ASCII.drawtemplate)
+                        print(ASCII.drawiceshardsucces)
                         print(f"Ледяной осколок нанёс {icesharddamage} Здоровье босса: {bosshp}")
 
                         if random.random() < 0.5:
@@ -193,7 +193,7 @@ while True:
 
                         playerhp -= 1
 
-                        print(ASCII.drawtemplate)
+                        print(ASCII.drawfireballfailed)
                         print(f"Ледяной осколок обморозил руку и нанёс 1 урона! Текущее здоровье: {playerhp} ")
                         
                         time.sleep(1.35)
