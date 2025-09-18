@@ -69,14 +69,28 @@ while True:
 
         #Удар мечом
         case 1:
-            refreshscreen_time()
-            print(ASCII.drawsword)
-            arcade.play_sound(swordsound)
 
-            playermana += pdamage
-            bosshp -= pdamage
+            #крит для меча
+            if random.random() > 0.01:
+                refreshscreen_time()
+                arcade.play_sound(swordsound)
+                print(ASCII.drawsword)
 
-            print(f"{playername} нанёс {pdamage} урона! Здоровье Гриши: {bosshp}")
+                playermana = pdamage
+                pdamage = pdamage * 1.5
+                bosshp -= pdamage
+
+                print(f"{playername} нанёс {pdamage} критического урона! Здоровье Гриши: {bosshp}")
+
+            else:
+                refreshscreen_time()
+                arcade.play_sound(swordsound)
+                print(ASCII.drawsword)
+
+                playermana += pdamage
+                bosshp -= pdamage
+
+                print(f"{playername} нанёс {pdamage} урона! Здоровье Гриши: {bosshp}")
 
         #Хилка
         case 2:
