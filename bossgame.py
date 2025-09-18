@@ -35,9 +35,10 @@ bossattack = arcade.load_sound("sounds/bossattack.wav")
 fireballsound = arcade.load_sound("sounds/fireball.wav")
 iceshardsound = arcade.load_sound("sounds/iceshard.wav")
 
-
-#if playername == "Аллах":
-    #playerhp = int(999)
+#Пасхалкоу
+if playername == "Аллах":
+    playerhp = int(999)
+    playermana = int(999)
 
 #Основной цикл
 while True:
