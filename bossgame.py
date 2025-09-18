@@ -2,6 +2,7 @@ import random
 import os
 import time
 import arcade
+import ASCII
 
 clear = lambda: os.system('cls')
 
@@ -17,98 +18,6 @@ while len(playername) > 5 or len(playername) < 3:
 def refreshscreen_time():
     time.sleep(1.35)
     clear()
-
-#ACSII
-
-drawmain = fr"""
-======================================
-|      {playername}           Гриша   
-|                 *   ,   ,        * |
-|  *     0           (\_o_/)  *      |
-|*      /|\   *      (  ^  )     *   |
-|_______/_\__________/|   |\_________|
-|                    _(   )_         |
-======================================
-"""
-
-
-drawsword = fr"""
-======================================
-|   ↑             /\    ↑            |
-|        ↑        ||             ↑   |
-|                 ||                 |
-|                 ||   ↑             |
-|    ↑       ↑  ======             ↑ |
-|                 ||        ↑        |
-======================================        
-"""
-
-drawheal = fr"""
-======================================
-|               _  _              ♥  |
-|  ♥          /` \/ `\     ♥         |
-|        ♥    \      /               |
-|              '.  .'                |
-|     ♥          \/             ♥    |
-|                      ♥             |
-======================================
-"""
-
-drawbossattack = fr"""
-======================================
-|           <      ,    ,    <       |
-| <               (\_o_/)            |
-|    <=====       (  ^  )        <   |
-|                 /|   |\            |
-|              <                     |
-|       <                     <      |
-======================================    
-"""
-
-drawbossdead = fr"""
-======================================
-|           *      ,    ,   *        |
-|      X          (\_o_/)       X    |
-|                 ( X X )            |
-|          X      (  x  )            |
-|    *            /|   |\     *      |
-|                                    |
-======================================    
-"""
-
-drawfireballsucces = """
-======================================
-|               >                    |
-|   >   0/                    >      |
-|      /|     ============>          |
-|      / \                           |
-|   >                  >             |
-|         >                       >  |
-======================================
-"""
-
-drawfireballfailed = """
-======================================
-|       X        \|/            X    |
-|  X           0/-o--    X           |
-|             /| /|\                 |
-|       X     / \             X      |
-|                    X               |
-|     X                           X  |
-======================================
-"""
-
-drawtemplate = """
-======================================
-|                                    |
-|                                    |
-|                                    |
-|                                    |
-|                                    |
-|                                    |
-======================================
-"""
-
 
 
 #Переменные
@@ -144,13 +53,13 @@ while True:
     #Проверка на смерть босса
     if bosshp < 1:
         refreshscreen_time()
-        print(drawbossdead)
+        print(ASCII.drawbossdead)
         print(f"Ты убил босса!")
         exit()
 
     #Главный экран
     refreshscreen_time()
-    print(drawmain)
+    print(ASCII.drawmain.format(playername=playername))
 
 
     #Логика игрока
@@ -161,7 +70,7 @@ while True:
         #Удар мечом
         case 1:
             refreshscreen_time()
-            print(drawsword)
+            print(ASCII.drawsword)
             arcade.play_sound(swordsound)
 
             playermana += pdamage
@@ -181,7 +90,7 @@ while True:
 
                 playerhp = min(playerheal + playerhp, 20)
 
-                print(drawheal)
+                print(ASCII.drawheal)
                 print(f"Хилка дала {playerheal} Текущее здоровье {playerhp} ")
 
 
@@ -196,7 +105,7 @@ while True:
 
                         refreshscreen_time()
                         arcade.play_sound(fireballsound)
-                        print(drawfireballsucces)
+                        print(ASCII.drawfireballsucces)
 
                         bosshp -= fireballdamage
                         playermana -= 3
@@ -209,7 +118,7 @@ while True:
                             refreshscreen_time()
                             fire_dot_damage = 3
 
-                            print(drawtemplate)
+                            print(ASCII.drawtemplate)
                             print(f"Босс загорелся на 3 хода!")
                 #Если не хватает маны
                     else:
@@ -217,7 +126,7 @@ while True:
 
                         playerhp -= 1
 
-                        print(drawfireballfailed)
+                        print(ASCII.drawfireballfailed)
                         print (f"Фаерболл взорвался в руке и нанёс 1 урона! Текущее здоровье: {playerhp}")
 
 
@@ -230,7 +139,7 @@ while True:
                         playermana -= 3
                         bosshp -= icesharddamage
 
-                        print(drawtemplate)
+                        print(ASCII.drawtemplate)
                         print(f"Ледяной осколок нанёс {icesharddamage} Здоровье босса: {bosshp}")
 
                         if random.random() < 0.5:
@@ -240,7 +149,7 @@ while True:
                     else:
                         playerhp -= 1
 
-                        print(drawtemplate)
+                        print(ASCII.drawtemplate)
                         print(f"Ледяной осколок обморозил руку и нанёс 1 урона! Текущее здоровье: {playerhp} ")
 
                 #Вернуться назад
@@ -256,14 +165,14 @@ while True:
 
         freezebuildup -= 1
 
-        print(drawtemplate)
+        print(ASCII.drawtemplate)
         print(f"Босс заморожен на {freezebuildup} хода!")
 
 
     #Логика босса
     else:
         refreshscreen_time()
-        print(drawbossattack)
+        print(ASCII.drawbossattack)
         arcade.play_sound(bossattack)
 
         bdamage = random.randint(1, 3)
@@ -279,7 +188,7 @@ while True:
         fire_dot_damage -= 1
         bosshp -= fire_dot_damage
 
-        print(drawtemplate)
+        print(ASCII.drawtemplate)
         arcade.play_sound(fireballsound)
         print("Босс получает 1 урон от огня")
 
