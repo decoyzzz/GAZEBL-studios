@@ -42,6 +42,7 @@ healsound = arcade.load_sound("sounds/heal.wav")
 bossattack = arcade.load_sound("sounds/bossattack.wav")
 fireballsound = arcade.load_sound("sounds/fireball.wav")
 iceshardsound = arcade.load_sound("sounds/iceshard.wav")
+burningsound = arcade.load_sound("sounds/burning.wav")
 
 #Пасхалкоу
 if playername == "Аллах":
@@ -153,7 +154,8 @@ while True:
                             clear()
                             fire_dot_damage = 3
 
-                            print(ASCII.drawtemplate)
+                            print(ASCII.drawbossfiredamage)
+                            arcade.play_sound(burningsound)
                             print(f"Босс загорелся на 3 хода!")
                             time.sleep(1.35)
                     #Если не хватает маны
@@ -234,8 +236,8 @@ while True:
         fire_dot_damage -= 1
         bosshp -= fire_dot_damage
 
-        print(ASCII.drawtemplate)
-        arcade.play_sound(fireballsound)
+        print(ASCII.drawbossfiredamage)
+        arcade.play_sound(burningsound)
         print("Босс получает 1 урон от огня")
         time.sleep(1.35)
 
