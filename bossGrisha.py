@@ -4,6 +4,7 @@ import time
 import arcade
 
 import ASCII
+import sounds
 
 def bossGrishaCycle():
     import bossgame
@@ -40,7 +41,7 @@ def bossGrishaCycle():
 
                 #крит для меча
                 if random.random() > 0.66:
-                    arcade.play_sound(bossgame.swordsound)
+                    arcade.play_sound(sounds.swordsound)
                     clear()
                     print(ASCII.drawswordcrit)
 
@@ -53,7 +54,7 @@ def bossGrishaCycle():
 
 
                 else:
-                    arcade.play_sound(bossgame.swordsound)
+                    arcade.play_sound(sounds.swordsound)
                     clear()
                     print(ASCII.drawsword)
 
@@ -74,7 +75,7 @@ def bossGrishaCycle():
 
                 else:
                     clear()
-                    arcade.play_sound(bossgame.healsound)
+                    arcade.play_sound(sounds.healsound)
 
                     bossgame.playerhp = min(playerheal + bossgame.playerhp, 20)
 
@@ -94,7 +95,7 @@ def bossGrishaCycle():
                         if bossgame.playermana >= 3:
 
                             clear()
-                            arcade.play_sound(bossgame.fireballsound)
+                            arcade.play_sound(sounds.fireballsound)
                             print(ASCII.drawfireballsucces)
 
                             bosshp -= fireballdamage
@@ -111,7 +112,7 @@ def bossGrishaCycle():
                                 fire_dot_damage = 3
 
                                 print(ASCII.drawbossfiredamage)
-                                arcade.play_sound(bossgame.burningsound)
+                                arcade.play_sound(sounds.burningsound)
                                 print(f"Босс загорелся на 3 хода!")
                                 time.sleep(1.35)
                         #Если не хватает маны
@@ -130,7 +131,7 @@ def bossGrishaCycle():
                     case 2:
                         if bossgame.playermana >= 3:
                             clear()
-                            arcade.play_sound(bossgame.iceshardsound)
+                            arcade.play_sound(sounds.iceshardsound)
 
                             bossgame.playermana -= 3
                             bosshp -= icesharddamage
@@ -165,7 +166,7 @@ def bossGrishaCycle():
         #Проверка Босса на Фриз
         if freezebuildup > 0:
             clear()
-            arcade.play_sound(bossgame.iceshardsound)
+            arcade.play_sound(sounds.iceshardsound)
             print(ASCII.drawbossfreeze)
             print(f"Босс заморожен еще {freezebuildup} ход(а)!")
             freezebuildup -= 1
@@ -176,7 +177,7 @@ def bossGrishaCycle():
         else:
             clear()
             print(ASCII.drawbossattack)
-            arcade.play_sound(bossgame.bossattack)
+            arcade.play_sound(sounds.bossattack)
 
             bdamage = random.randint(1, 3)
             bossgame.playerhp -= bdamage
@@ -193,7 +194,7 @@ def bossGrishaCycle():
             bosshp -= fire_dot_damage
 
             print(ASCII.drawbossfiredamage)
-            arcade.play_sound(bossgame.burningsound)
+            arcade.play_sound(sounds.burningsound)
             print("Босс получает 1 урон от огня")
             time.sleep(1.35)
 

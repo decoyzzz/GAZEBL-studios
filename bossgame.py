@@ -1,6 +1,5 @@
 import os
 import time
-import arcade
 import msvcrt
 
 import ASCII
@@ -31,14 +30,6 @@ def get_key():
 #Переменные игрока
 playerhp = int(20)
 playermana = int(0)
-
-#Звуки
-swordsound = arcade.load_sound("sounds/sword.wav")
-healsound = arcade.load_sound("sounds/heal.wav")
-bossattack = arcade.load_sound("sounds/bossattack.wav")
-fireballsound = arcade.load_sound("sounds/fireball.wav")
-iceshardsound = arcade.load_sound("sounds/iceshard.wav")
-burningsound = arcade.load_sound("sounds/burning.wav")
 
 #Пасхалкоу
 if playername == "Аллах":
