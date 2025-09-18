@@ -123,6 +123,8 @@ freezebuildup = -1
 swordsound = arcade.load_sound("sounds/sword.wav")
 healsound = arcade.load_sound("sounds/heal.wav")
 bossattack = arcade.load_sound("sounds/bossattack.wav")
+fireballsound = arcade.load_sound("sounds/fireball.wav")
+iceshardsound = arcade.load_sound("sounds/iceshard.wav")
 
 
 #if playername == "Аллах":
@@ -193,6 +195,7 @@ while True:
                     if playermana >= 3:
 
                         refreshscreen_time()
+                        arcade.play_sound(fireballsound)
                         print(drawfireballsucces)
 
                         bosshp -= fireballdamage
@@ -222,6 +225,7 @@ while True:
                 case 2:
                     if playermana >= 3:
                         refreshscreen_time()
+                        arcade.play_sound(iceshardsound)
 
                         playermana -= 3
                         bosshp -= icesharddamage
@@ -248,6 +252,7 @@ while True:
     #Проверка Босса на Фриз
     if freezebuildup > 0:
         refreshscreen_time()
+        arcade.play_sound(iceshardsound)
 
         freezebuildup -= 1
 
@@ -275,6 +280,7 @@ while True:
         bosshp -= fire_dot_damage
 
         print(drawtemplate)
+        arcade.play_sound(fireballsound)
         print("Босс получает 1 урон от огня")
 
 
