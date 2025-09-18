@@ -72,7 +72,7 @@ while True:
         case 1:
 
             #крит для меча
-            if random.random() > 0.01:
+            if random.random() > 0.5:
                 refreshscreen_time()
                 arcade.play_sound(swordsound)
                 print(ASCII.drawswordcrit)
