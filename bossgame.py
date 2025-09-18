@@ -2,6 +2,8 @@ import random
 import os
 import time
 import arcade
+import msvcrt
+
 import ASCII
 
 clear = lambda: os.system('cls')
@@ -64,7 +66,13 @@ while True:
 
 
     #Логика игрока
-    action = int(input(f"Твоё хп: {playerhp} | Твоя мана: {playermana} | Хп Босса: {bosshp}\n [1] Ударить мечом! [2] Восстановить здоровье! [3] Меню выбора навыков!"))
+    print(f"Твоё хп: {playerhp} | Твоя мана: {playermana} | Хп Босса: {bosshp}\n [1] Ударить мечом! [2] Восстановить здоровье! [3] Меню выбора навыков!")
+    
+    key = msvcrt.getch()
+    try:
+        action = int(key.decode())  # преобразуем в int
+    except ValueError:
+        action = 0
 
     match action:
 
@@ -111,7 +119,13 @@ while True:
 
         #Меню выбора навыков
         case 3:
-            skillchoise = int(input(f"\nДоступные навыки:\n[1] Фаерболл! [2] Ледяной осколок! [3] Вернуться назад!"))
+            print(f"\nДоступные навыки:\n[1] Фаерболл! [2] Ледяной осколок! [3] Вернуться назад!")
+            
+            key = msvcrt.getch()
+            try:
+                skillchoise = int(key.decode())  # преобразуем в int
+            except ValueError:
+                skillchoise = 0
 
             match skillchoise:
                 #Выбор фаербола
