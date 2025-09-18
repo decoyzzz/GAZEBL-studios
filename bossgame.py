@@ -154,91 +154,94 @@ while True:
     #Логика игрока
     action = int(input(f"Твоё хп: {playerhp} | Твоя мана: {playermana} | Хп Босса: {bosshp}\n [1] Ударить мечом! [2] Восстановить здоровье! [3] Меню выбора навыков!"))
 
-    #Удар мечом
-    if action == 1:
-        refreshscreen_time()
-        print(drawsword)
-        arcade.play_sound(swordsound)
+    match action:
 
-        playermana += pdamage
-        bosshp -= pdamage
+        #Удар мечом
+        case 1:
+            refreshscreen_time()
+            print(drawsword)
+            arcade.play_sound(swordsound)
 
-        print(f"{playername} нанёс {pdamage} урона! Здоровье Гриши: {bosshp}")
+            playermana += pdamage
+            bosshp -= pdamage
 
-    #Хилка
-    elif action == 2:
-        if playerhp >= 20:
-            playerhp -= playerheal
-            print(f"Еблан? У тебя фулл хп. Лося за втык! Хилка нанесла {playerheal} урона! Текущее здоровье {playerhp}")
+            print(f"{playername} нанёс {pdamage} урона! Здоровье Гриши: {bosshp}")
 
-        else:
-             refreshscreen_time()
-             arcade.play_sound(healsound)
+        #Хилка
+        case 2:
+            if playerhp >= 20:
+                playerhp -= playerheal
+                print(f"Еблан? У тебя фулл хп. Лося за втык! Хилка нанесла {playerheal} урона! Текущее здоровье {playerhp}")
 
-             playerhp = min(playerheal + playerhp, 20)
-
-             print(drawheal)
-             print(f"Хилка дала {playerheal} Текущее здоровье {playerhp} ")
-
-
-    #Меню выбора навыков
-    elif action == 3:
-        skillchoise = int(input(f"\nДоступные навыки:\n[1] Фаерболл! [2] Ледяной осколок! [3] Вернуться назад!"))
-
-        #Выбор фаербола
-        if skillchoise == 1:
-            if playermana >= 3:
-
-                refreshscreen_time()
-                print(drawfireballsucces)
-
-                bosshp -= fireballdamage
-                playermana -= 3
-
-                print (f"Нанесенно: {fireballdamage} Здоровье босса: {bosshp}")
-
-            #шанс прока дот урона от огня
-                if random.random() < 0.5:
-
-                    refreshscreen_time()
-                    fire_dot_damage = 3
-
-                    print(drawtemplate)
-                    print(f"Босс загорелся на 3 хода!")
-        #Если не хватает маны
             else:
                 refreshscreen_time()
+                arcade.play_sound(healsound)
 
-                playerhp -= 1
+                playerhp = min(playerheal + playerhp, 20)
 
-                print(drawfireballfailed)
-                print (f"Фаерболл взорвался в руке и нанёс 1 урона! Текущее здоровье: {playerhp}")
+                print(drawheal)
+                print(f"Хилка дала {playerheal} Текущее здоровье {playerhp} ")
 
 
-        #Ледяной урон
-        elif skillchoise == 2:
-            if playermana >= 3:
-                refreshscreen_time()
+        #Меню выбора навыков
+        case 3:
+            skillchoise = int(input(f"\nДоступные навыки:\n[1] Фаерболл! [2] Ледяной осколок! [3] Вернуться назад!"))
 
-                playermana -= 3
-                bosshp -= icesharddamage
+            match skillchoise:
+                #Выбор фаербола
+                case 1:
+                    if playermana >= 3:
 
-                print(drawtemplate)
-                print(f"Ледяной осколок нанёс {icesharddamage} Здоровье босса: {bosshp}")
+                        refreshscreen_time()
+                        print(drawfireballsucces)
 
-                if random.random() < 0.5:
-                    freezebuildup = 2
+                        bosshp -= fireballdamage
+                        playermana -= 3
 
-            #Если не хватает маны
-            else:
-                playerhp -= 1
+                        print (f"Нанесенно: {fireballdamage} Здоровье босса: {bosshp}")
 
-                print(drawtemplate)
-                print(f"Ледяной осколок обморозил руку и нанёс 1 урона! Текущее здоровье: {playerhp} ")
+                    #шанс прока дот урона от огня
+                        if random.random() < 0.5:
 
-        #Вернуться назад
-        elif skillchoise == 3:
-            continue
+                            refreshscreen_time()
+                            fire_dot_damage = 3
+
+                            print(drawtemplate)
+                            print(f"Босс загорелся на 3 хода!")
+                #Если не хватает маны
+                    else:
+                        refreshscreen_time()
+
+                        playerhp -= 1
+
+                        print(drawfireballfailed)
+                        print (f"Фаерболл взорвался в руке и нанёс 1 урона! Текущее здоровье: {playerhp}")
+
+
+                #Ледяной урон
+                case 2:
+                    if playermana >= 3:
+                        refreshscreen_time()
+
+                        playermana -= 3
+                        bosshp -= icesharddamage
+
+                        print(drawtemplate)
+                        print(f"Ледяной осколок нанёс {icesharddamage} Здоровье босса: {bosshp}")
+
+                        if random.random() < 0.5:
+                            freezebuildup = 2
+
+                    #Если не хватает маны
+                    else:
+                        playerhp -= 1
+
+                        print(drawtemplate)
+                        print(f"Ледяной осколок обморозил руку и нанёс 1 урона! Текущее здоровье: {playerhp} ")
+
+                #Вернуться назад
+                case 3:
+                    continue
 
 
 
