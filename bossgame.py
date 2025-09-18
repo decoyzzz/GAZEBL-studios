@@ -165,7 +165,7 @@ while True:
 
         freezebuildup -= 1
 
-        print(ASCII.drawtemplate)
+        print(ASCII.drawbossfreeze)
         print(f"Босс заморожен на {freezebuildup} хода!")
 
 
