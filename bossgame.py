@@ -208,11 +208,9 @@ while True:
     if freezebuildup > 0:
         clear()
         arcade.play_sound(iceshardsound)
-
-        freezebuildup -= 1
-
         print(ASCII.drawbossfreeze)
         print(f"Босс заморожен на {freezebuildup} хода!")
+        freezebuildup -= 1
         time.sleep(1.35)
 
 
