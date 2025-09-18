@@ -16,11 +16,17 @@ while len(playername) > 5 or len(playername) < 3:
     print("Размер имени от 3 до 5 символов...")
     playername = input("Введи своё имя: ")
 
-#Функция очистки
-def refreshscreen_time():
-    time.sleep(1.35)
-    clear()
+#Функция считывания нажатой клавиши
+def get_key():
+    # очищаем буфер
+    while msvcrt.kbhit():
+        msvcrt.getch()
 
+    key = msvcrt.getch()  # читаем только свежую клавишу
+    try:
+        return int(key.decode())
+    except ValueError:
+        return None  # если не цифра
 
 #Переменные
 playerhp = int(20)
@@ -55,24 +61,20 @@ while True:
 
     #Проверка на смерть босса
     if bosshp < 1:
-        refreshscreen_time()
+        clear()
         print(ASCII.drawbossdead)
         print(f"Ты убил босса!")
+        time.sleep(1.35)
         exit()
 
     #Главный экран
-    refreshscreen_time()
+    clear()
     print(ASCII.drawmain.format(playername=playername))
 
 
     #Логика игрока
     print(f"Твоё хп: {playerhp} | Твоя мана: {playermana} | Хп Босса: {bosshp}\n [1] Ударить мечом! [2] Восстановить здоровье! [3] Меню выбора навыков!")
-    
-    key = msvcrt.getch()
-    try:
-        action = int(key.decode())  # преобразуем в int
-    except ValueError:
-        action = 0
+    action = get_key()
 
     match action:
 
@@ -81,8 +83,8 @@ while True:
 
             #крит для меча
             if random.random() > 0.5:
-                refreshscreen_time()
                 arcade.play_sound(swordsound)
+                clear()
                 print(ASCII.drawswordcrit)
 
                 playermana = pdamage
@@ -90,49 +92,51 @@ while True:
                 bosshp -= pdamage
 
                 print(f"{playername} нанёс {pdamage} критического урона! Здоровье Гриши: {bosshp}")
+                time.sleep(1.35)
+    
 
             else:
-                refreshscreen_time()
                 arcade.play_sound(swordsound)
+                clear()
                 print(ASCII.drawsword)
 
                 playermana += pdamage
                 bosshp -= pdamage
 
                 print(f"{playername} нанёс {pdamage} урона! Здоровье Гриши: {bosshp}")
+                time.sleep(1.35)
 
         #Хилка
         case 2:
             if playerhp >= 20:
+                clear()
                 playerhp -= playerheal
+                print(ASCII.drawtemplate)
                 print(f"Еблан? У тебя фулл хп. Лося за втык! Хилка нанесла {playerheal} урона! Текущее здоровье {playerhp}")
+                time.sleep(1.35)
 
             else:
-                refreshscreen_time()
+                clear()
                 arcade.play_sound(healsound)
 
                 playerhp = min(playerheal + playerhp, 20)
 
                 print(ASCII.drawheal)
                 print(f"Хилка дала {playerheal} Текущее здоровье {playerhp} ")
+                time.sleep(1.35)
 
 
         #Меню выбора навыков
         case 3:
             print(f"\nДоступные навыки:\n[1] Фаерболл! [2] Ледяной осколок! [3] Вернуться назад!")
-            
-            key = msvcrt.getch()
-            try:
-                skillchoise = int(key.decode())  # преобразуем в int
-            except ValueError:
-                skillchoise = 0
+            skillchoise = get_key()
 
             match skillchoise:
                 #Выбор фаербола
                 case 1:
                     if playermana >= 3:
 
-                        refreshscreen_time()
+                        clear()
                         arcade.play_sound(fireballsound)
                         print(ASCII.drawfireballsucces)
 
@@ -140,29 +144,34 @@ while True:
                         playermana -= 3
 
                         print (f"Нанесенно: {fireballdamage} Здоровье босса: {bosshp}")
+                        
+                        time.sleep(1.35)
 
-                    #шанс прока дот урона от огня
+                        #шанс прока дот урона от огня
                         if random.random() < 0.5:
 
-                            refreshscreen_time()
+                            clear()
                             fire_dot_damage = 3
 
                             print(ASCII.drawtemplate)
                             print(f"Босс загорелся на 3 хода!")
-                #Если не хватает маны
+                            time.sleep(1.35)
+                    #Если не хватает маны
                     else:
-                        refreshscreen_time()
+                        clear()
 
                         playerhp -= 1
 
                         print(ASCII.drawfireballfailed)
                         print (f"Фаерболл взорвался в руке и нанёс 1 урона! Текущее здоровье: {playerhp}")
+                        
+                        time.sleep(1.35)
 
 
                 #Ледяной урон
                 case 2:
                     if playermana >= 3:
-                        refreshscreen_time()
+                        clear()
                         arcade.play_sound(iceshardsound)
 
                         playermana -= 3
@@ -173,13 +182,19 @@ while True:
 
                         if random.random() < 0.5:
                             freezebuildup = 2
+                        
+                        time.sleep(1.35)
 
                     #Если не хватает маны
                     else:
+                        clear()
+
                         playerhp -= 1
 
                         print(ASCII.drawtemplate)
                         print(f"Ледяной осколок обморозил руку и нанёс 1 урона! Текущее здоровье: {playerhp} ")
+                        
+                        time.sleep(1.35)
 
                 #Вернуться назад
                 case 3:
@@ -189,18 +204,19 @@ while True:
 
     #Проверка Босса на Фриз
     if freezebuildup > 0:
-        refreshscreen_time()
+        clear()
         arcade.play_sound(iceshardsound)
 
         freezebuildup -= 1
 
         print(ASCII.drawbossfreeze)
         print(f"Босс заморожен на {freezebuildup} хода!")
+        time.sleep(1.35)
 
 
     #Логика босса
     else:
-        refreshscreen_time()
+        clear()
         print(ASCII.drawbossattack)
         arcade.play_sound(bossattack)
 
@@ -208,11 +224,12 @@ while True:
         playerhp -= bdamage
 
         print (f"Босс Гриша нанёс {bdamage} урона!")
+        time.sleep(1.35)
 
 
     #Счётчик дот урона от фаерболла
     if fire_dot_damage >= 0:
-        refreshscreen_time()
+        clear()
 
         fire_dot_damage -= 1
         bosshp -= fire_dot_damage
@@ -220,6 +237,7 @@ while True:
         print(ASCII.drawtemplate)
         arcade.play_sound(fireballsound)
         print("Босс получает 1 урон от огня")
+        time.sleep(1.35)
 
 
     if playerhp <= 0:
