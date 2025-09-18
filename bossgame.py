@@ -75,7 +75,7 @@ while True:
             if random.random() > 0.01:
                 refreshscreen_time()
                 arcade.play_sound(swordsound)
-                print(ASCII.drawsword)
+                print(ASCII.drawswordcrit)
 
                 playermana = pdamage
                 pdamage = pdamage * 1.5
