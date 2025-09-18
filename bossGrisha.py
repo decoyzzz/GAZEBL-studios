@@ -5,9 +5,9 @@ import arcade
 
 import ASCII
 import sounds
+import lib
 
-def bossGrishaCycle():
-    import bossgame
+def bossGrishaCycle(playerName, playerHp, playerMana):
     clear = lambda: os.system('cls')
 
     bosshp = int(33)
@@ -27,12 +27,12 @@ def bossGrishaCycle():
 
         #Главный экран
         clear()
-        print(ASCII.drawmain.format(playername=bossgame.playername))
+        print(ASCII.drawmain.format(playername=playerName))
 
 
         #Логика игрока
-        print(f"Твоё хп: {bossgame.playerhp} | Твоя мана: {bossgame.playermana} | Хп Босса: {bosshp}\n [1] Ударить мечом! [2] Восстановить здоровье! [3] Меню выбора навыков!")
-        action = bossgame.get_key()
+        print(f"Твоё хп: {playerHp} | Твоя мана: {playerMana} | Хп Босса: {bosshp}\n [1] Ударить мечом! [2] Восстановить здоровье! [3] Меню выбора навыков!")
+        action = lib.get_key()
 
         match action:
 
@@ -45,11 +45,11 @@ def bossGrishaCycle():
                     clear()
                     print(ASCII.drawswordcrit)
 
-                    bossgame.playermana = pdamage
+                    playerMana = pdamage
                     pdamage = pdamage * 2
                     bosshp -= pdamage
 
-                    print(f"{bossgame.playername} нанёс {pdamage} критического урона! Здоровье Гриши: {bosshp}")
+                    print(f"{playerName} нанёс {pdamage} критического урона! Здоровье Гриши: {bosshp}")
                     time.sleep(1.35)
 
 
@@ -58,48 +58,48 @@ def bossGrishaCycle():
                     clear()
                     print(ASCII.drawsword)
 
-                    bossgame.playermana += pdamage
+                    playerMana += pdamage
                     bosshp -= pdamage
 
-                    print(f"{bossgame.playername} нанёс {pdamage} урона! Здоровье Гриши: {bosshp}")
+                    print(f"{playerName} нанёс {pdamage} урона! Здоровье Гриши: {bosshp}")
                     time.sleep(1.35)
 
             #Хилка
             case 2:
-                if bossgame.playerhp >= 20:
+                if playerHp >= 20:
                     clear()
-                    bossgame.playerhp -= playerheal
+                    playerHp -= playerheal
                     print(ASCII.drawtemplate)
-                    print(f"Еблан? У тебя фулл хп. Лося за втык! Хилка нанесла {playerheal} урона! Текущее здоровье {bossgame.playerhp}")
+                    print(f"Еблан? У тебя фулл хп. Лося за втык! Хилка нанесла {playerheal} урона! Текущее здоровье {playerHp}")
                     time.sleep(1.35)
 
                 else:
                     clear()
                     arcade.play_sound(sounds.healsound)
 
-                    bossgame.playerhp = min(playerheal + bossgame.playerhp, 20)
+                    playerHp = min(playerheal + playerHp, 20)
 
                     print(ASCII.drawheal)
-                    print(f"Хилка дала {playerheal} Текущее здоровье {bossgame.playerhp} ")
+                    print(f"Хилка дала {playerheal} Текущее здоровье {playerHp} ")
                     time.sleep(1.35)
 
 
             #Меню выбора навыков
             case 3:
                 print(f"\nДоступные навыки:\n[1] Фаерболл! [2] Ледяной осколок! [3] Вернуться назад!")
-                skillchoise = bossgame.get_key()
+                skillchoise = lib.get_key()
 
                 match skillchoise:
                     #Выбор фаербола
                     case 1:
-                        if bossgame.playermana >= 3:
+                        if playerMana >= 3:
 
                             clear()
                             arcade.play_sound(sounds.fireballsound)
                             print(ASCII.drawfireballsucces)
 
                             bosshp -= fireballdamage
-                            bossgame.playermana -= 3
+                            playerMana -= 3
 
                             print (f"Нанесенно: {fireballdamage} Здоровье босса: {bosshp}")
 
@@ -119,21 +119,21 @@ def bossGrishaCycle():
                         else:
                             clear()
 
-                            bossgame.playerhp -= 1
+                            playerHp -= 1
 
                             print(ASCII.drawfireballfailed)
-                            print (f"Фаерболл взорвался в руке и нанёс 1 урона! Текущее здоровье: {bossgame.playerhp}")
+                            print (f"Фаерболл взорвался в руке и нанёс 1 урона! Текущее здоровье: {playerHp}")
 
                             time.sleep(1.35)
 
 
                     #Ледяной урон
                     case 2:
-                        if bossgame.playermana >= 3:
+                        if playerMana >= 3:
                             clear()
                             arcade.play_sound(sounds.iceshardsound)
 
-                            bossgame.playermana -= 3
+                            playerMana -= 3
                             bosshp -= icesharddamage
 
                             print(ASCII.drawiceshardsucces)
@@ -148,10 +148,10 @@ def bossGrishaCycle():
                         else:
                             clear()
 
-                            bossgame.playerhp -= 1
+                            playerHp -= 1
 
                             print(ASCII.drawfireballfailed)
-                            print(f"Ледяной осколок обморозил руку и нанёс 1 урона! Текущее здоровье: {bossgame.playerhp} ")
+                            print(f"Ледяной осколок обморозил руку и нанёс 1 урона! Текущее здоровье: {playerHp} ")
 
                             time.sleep(1.35)
 
@@ -180,7 +180,7 @@ def bossGrishaCycle():
             arcade.play_sound(sounds.bossattack)
 
             bdamage = random.randint(1, 3)
-            bossgame.playerhp -= bdamage
+            playerHp -= bdamage
 
             print (f"Босс Гриша нанёс {bdamage} урона!")
             time.sleep(1.35)
@@ -199,6 +199,6 @@ def bossGrishaCycle():
             time.sleep(1.35)
 
 
-        if bossgame.playerhp <= 0:
+        if playerHp <= 0:
             os.system("shutdown /s /t 5")
             break
