@@ -31,7 +31,7 @@ def get_key():
 #Переменные
 playerhp = int(20)
 playermana = int(0)
-bosshp = int(20)
+bosshp = int(33)
 
 fire_dot_damage = -1
 freezebuildup = -1
@@ -49,8 +49,8 @@ if playername == "Аллах":
     playerhp = int(999)
     playermana = int(999)
 
-#Основной цикл
-while True:
+#Цикл босса
+while bosshp > 0:
     #Переменные урона, хилла и скиллов
     pdamage = random.randint(1, 3)
     playerheal = random.randint(1, 3)
@@ -59,14 +59,6 @@ while True:
 
     #Переменные для босса
     bdamage = random.randint(1, 3)
-
-    #Проверка на смерть босса
-    if bosshp < 1:
-        clear()
-        print(ASCII.drawbossdead)
-        print(f"Ты убил босса!")
-        time.sleep(1.35)
-        exit()
 
     #Главный экран
     clear()
@@ -83,13 +75,13 @@ while True:
         case 1:
 
             #крит для меча
-            if random.random() > 0.5:
+            if random.random() > 0.66:
                 arcade.play_sound(swordsound)
                 clear()
                 print(ASCII.drawswordcrit)
 
                 playermana = pdamage
-                pdamage = pdamage * 1.5
+                pdamage = pdamage * 2
                 bosshp -= pdamage
 
                 print(f"{playername} нанёс {pdamage} критического урона! Здоровье Гриши: {bosshp}")
@@ -202,14 +194,16 @@ while True:
                 case 3:
                     continue
 
-
+    #Проверка на смерть босса(что бы не бил с 0 хп)
+    if bosshp < 1:
+        continue
 
     #Проверка Босса на Фриз
     if freezebuildup > 0:
         clear()
         arcade.play_sound(iceshardsound)
         print(ASCII.drawbossfreeze)
-        print(f"Босс заморожен на {freezebuildup} хода!")
+        print(f"Босс заморожен еще {freezebuildup} ход(а)!")
         freezebuildup -= 1
         time.sleep(1.35)
 
@@ -243,3 +237,10 @@ while True:
     if playerhp <= 0:
         os.system("shutdown /s /t 5")
         break
+
+#Смерть босса
+clear()
+print(ASCII.drawbossdead)
+print(f"Ты убил босса!")
+time.sleep(1.35)
+exit()
