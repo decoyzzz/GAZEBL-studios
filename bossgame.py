@@ -3,7 +3,7 @@ import time
 
 import ASCII
 
-from classes import Charik, Player
+from classesCharik import Charik, Player
 
 clear = lambda: os.system('cls')
 
@@ -31,9 +31,8 @@ while bossLelik.alive == True:
     bossLelik.makeMove(player)
     time.sleep(1.4)
 
-#bossGrisha.bossGrishaCycle(playername, playerhp, playermana)
 
-#Экран победы первого босса
+#Экран победы над первым боссом
 clear()
 print(ASCII.drawtrophy)
 print(f"Ты победил босса {bossLelik.name}!")

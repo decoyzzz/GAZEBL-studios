@@ -6,6 +6,7 @@ import time
 import ASCII
 import sounds
 import lib
+from classesSpell import Fireball, IceShard
 
 clear = lambda: os.system('cls')
 
@@ -68,6 +69,10 @@ class Player(Charik):
 
     def __init__(self, name="Player", hp=-1, mana=-1):
         super().__init__(name, hp, mana)
+        self.spells=[]
+
+    def castSpell(self, spell, target):
+        spell.cast(self, target)
 
     def makeMove(self, enemy):
 
@@ -93,8 +98,6 @@ class Player(Charik):
             #Переменные для хода игрока
             self.damage = random.randint(1, 3)
             self.heal = random.randint(1, 3)
-            self.fireballdamage = random.randint(2, 4)
-            self.icesharddamage = random.randint(1, 2)
             
             #Цикл игрока
             while True:
@@ -157,67 +160,16 @@ class Player(Charik):
                         match skillchoise:
                             #Выбор фаербола
                             case 1:
-                                if self.mana >= 3:
-                                    enemy.getDamage(self.fireballdamage)
-                                    self.mana -= 3
-
-                                    clear()
-                                    print(ASCII.drawfireballsucces)
-                                    arcade.play_sound(sounds.fireballsound)
-                                    print (f"Фаерболл нанес: {self.fireballdamage} урона! Здоровье {enemy.name}: {enemy.hp}")
-
-                                    #шанс прока дот урона от огня
-                                    if random.random() < 0.5:
-                                        enemy.fire_dot_damage = 3
-
-                                        time.sleep(1.4)
-                                        clear()
-                                        print(ASCII.drawbossfiredamage)
-                                        arcade.play_sound(sounds.burningsound)
-                                        print(f"{enemy.name} загорелся на 3 хода!")
-                                    
-                                    return
-
-                                #Если не хватает маны
-                                else:
-                                    self.getDamage(1)
-
-                                    clear()
-                                    print(ASCII.drawfireballfailed)
-                                    print (f"Фаерболл взорвался в руке и нанёс 1 урона! Текущее здоровье: {self.hp}")
-                                    return
+                                fireball = Fireball("Фаерболл", 2, 4, 3, 0.5, 3)
+                                self.castSpell(fireball, enemy)
+                                return
 
 
                             #Ледяной урон
                             case 2:
-                                if self.mana >= 3:
-                                    self.mana -= 3
-                                    enemy.getDamage(self.icesharddamage)
-
-                                    clear()
-                                    print(ASCII.drawiceshardsucces)
-                                    arcade.play_sound(sounds.iceshardsound)
-                                    print(f"Ледяной осколок нанёс {self.icesharddamage} урона! Здоровье {enemy.name}: {enemy.hp}")
-
-                                    if random.random() < 0.5:
-                                        enemy.freezebuildup = 2
-
-                                        time.sleep(1.4)
-                                        clear()
-                                        print(ASCII.drawbossfreeze)
-                                        print(f"Ледяной осколок заморозил {enemy.name} на 2 хода!")
-                                    
-                                    return
-                                
-
-                                #Если не хватает маны
-                                else:
-                                    self.getDamage(1)
-
-                                    clear()
-                                    print(ASCII.drawfireballfailed)
-                                    print(f"Ледяной осколок обморозил руку и нанёс 1 урона! Текущее здоровье: {self.hp} ")
-                                    return
+                                iceshard = IceShard("Ледяной осколок", 1, 2, 3, 0.5, 2)
+                                self.castSpell(iceshard, enemy)
+                                return
 
 
                             #Вернуться назад
