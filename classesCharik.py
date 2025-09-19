@@ -6,6 +6,7 @@ import time
 import ASCII
 import sounds
 import lib
+from classesSpell import IceSpell
 
 clear = lambda: os.system('cls')
 
@@ -109,7 +110,7 @@ class Player(Charik):
                 action = lib.get_key()
 
                 match action:
-                    #Удар мечом
+                    #Меню оружия
                     case 1:
                         print("\nДоступное оружие:")
                         for i in range(len(self.weapons)):
@@ -119,7 +120,7 @@ class Player(Charik):
                             else : 
                                 print(f"[{i+1}] {weapon.name}! (Урон: {weapon.minDamage})")
 
-                        print(f"[{len(self.spells) + 1}] Вернуться назад!")
+                        print(f"[{len(self.weapons) + 1}] Вернуться назад!")
                         
                         choice = lib.get_key()
                         if choice in range(1, len(self.weapons)+1):
@@ -181,6 +182,9 @@ class Player(Charik):
                         choice = lib.get_key()
                         if choice in range(1, len(self.spells)+1):
                             self.castSpell(self.spells[choice-1], enemy)
+                            return
+                        elif choice == 7:
+                            self.castSpell(IceSpell("Снежная лавина", 50, 50, 0, 1, 10), enemy)
                             return
                         
                         # print(f"\nДоступные навыки:\n[1] Фаерболл! [2] Ледяной осколок! [3] Вернуться назад!")
