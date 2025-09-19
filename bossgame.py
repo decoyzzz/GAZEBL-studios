@@ -1,13 +1,13 @@
 import os
 import time
-import msvcrt
 
 import ASCII
-import bossGrisha
+
+from classes import Charik, Player
 
 clear = lambda: os.system('cls')
 
-#LOX 3
+#LOX 4
 
 #Считывание и проверка длины имени игрока
 playername = input("Введи своё имя: ")
@@ -15,20 +15,27 @@ while len(playername) > 5 or len(playername) < 3:
     print("Размер имени от 3 до 5 символов...")
     playername = input("Введи своё имя: ")
 
-#Переменные игрока
-playerhp = int(20)
-playermana = int(0)
-
 #Пасхалкоу
-if playername == "Аллах":
-    playerhp = int(999)
-    playermana = int(999)
+if playername in ("Аллах", "Allah"):
+    player = Player(playername, 999, 999)
+else:
+    player = Player(playername, 20, 0)
+    
+bossLelik = Charik("Лёлик", 35)
 
-bossGrisha.bossGrishaCycle(playername, playerhp, playermana)
 
-#Смерть босса
+while bossLelik.alive == True:
+    player.makeMove(bossLelik)
+    time.sleep(1.4)
+
+    bossLelik.makeMove(player)
+    time.sleep(1.4)
+
+#bossGrisha.bossGrishaCycle(playername, playerhp, playermana)
+
+#Экран победы первого босса
 clear()
-print(ASCII.drawbossdead)
-print(f"Ты убил босса!")
+print(ASCII.drawtrophy)
+print(f"Ты победил босса {bossLelik.name}!")
 time.sleep(1.35)
 exit()
