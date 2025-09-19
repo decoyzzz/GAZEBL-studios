@@ -4,6 +4,7 @@ import time
 import ASCII
 
 from classesCharik import Charik, Player
+from classesSpell import Fireball, IceShard
 
 clear = lambda: os.system('cls')
 
@@ -20,9 +21,13 @@ if playername in ("Аллах", "Allah"):
     player = Player(playername, 999, 999)
 else:
     player = Player(playername, 20, 0)
-    
-bossLelik = Charik("Лёлик", 35)
 
+#Выдача заклинаний игроку
+player.spells.append(Fireball("Фаерболл", 2, 4, 3, 0.5, 3))
+player.spells.append(IceShard("Ледяная стрела", 1, 2, 3, 0.5, 2))
+    
+#Создание первого босса
+bossLelik = Charik("Лёлик", 35)
 
 while bossLelik.alive == True:
     player.makeMove(bossLelik)

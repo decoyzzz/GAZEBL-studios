@@ -31,7 +31,7 @@ class Fireball(Spell):
             clear()
             print(ASCII.drawfireballsucces)
             arcade.play_sound(sounds.fireballsound)
-            print (f"Фаерболл нанес: {self.damage} урона! Здоровье {target.name}: {target.hp}")
+            print (f"{self.name} нанес: {self.damage} урона! Здоровье {target.name}: {target.hp}")
             
             #шанс прока дот урона от огня
             if random.random() < self.burningChance:
@@ -49,7 +49,7 @@ class Fireball(Spell):
            
             clear()
             print(ASCII.drawfireballfailed)
-            print (f"Фаерболл взорвался в руке {spellcaster.name} и нанёс 1 урона! Текущее здоровье: {spellcaster.hp}")
+            print (f"{self.name} взорвался в руке {spellcaster.name} и нанёс 1 урона! Текущее здоровье: {spellcaster.hp}")
 
 class IceShard(Spell):
     def __init__(self, name, minDamage, maxDamage, manaCost, freezeChance, freezeStrength):
@@ -67,7 +67,7 @@ class IceShard(Spell):
             clear()
             print(ASCII.drawiceshardsucces)
             arcade.play_sound(sounds.iceshardsound)
-            print(f"Ледяной осколок нанёс {self.damage} урона! Здоровье {target.name}: {target.hp}")
+            print(f"{self.name} нанёс {self.damage} урона! Здоровье {target.name}: {target.hp}")
 
             if random.random() < self.freezeChance:
                 target.freezebuildup = self.freezeStrength
@@ -75,7 +75,7 @@ class IceShard(Spell):
                 time.sleep(1.4)
                 clear()
                 print(ASCII.drawbossfreeze)
-                print(f"Ледяной осколок заморозил {target.name} на {self.freezeStrength} хода(ов)!")
+                print(f"{self.name} заморозил {target.name} на {self.freezeStrength} хода(ов)!")
                                     
             return
                                 
@@ -86,5 +86,5 @@ class IceShard(Spell):
 
             clear()
             print(ASCII.drawfireballfailed)
-            print(f"Ледяной осколок обморозил руку и нанёс 1 урона! Текущее здоровье: {spellcaster.hp} ")
+            print(f"{self.name} обморозил руку и нанёс 1 урона! Текущее здоровье: {spellcaster.hp} ")
             return

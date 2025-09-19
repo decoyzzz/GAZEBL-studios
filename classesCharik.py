@@ -102,7 +102,7 @@ class Player(Charik):
             #Цикл игрока
             while True:
                 clear()
-                print(ASCII.drawmain.format(playername=self.name))
+                print(ASCII.drawmain.format(playername=self.name, bossname=enemy.name))
                 print(f"Твоё хп: {self.hp} | Твоя мана: {self.mana} | Хп Босса: {enemy.hp}\n [1] Ударить мечом! [2] Восстановить здоровье! [3] Меню выбора навыков!")
                 action = lib.get_key()
 
@@ -154,24 +154,35 @@ class Player(Charik):
 
                     #Меню выбора навыков
                     case 3:
-                        print(f"\nДоступные навыки:\n[1] Фаерболл! [2] Ледяной осколок! [3] Вернуться назад!")
-                        skillchoise = lib.get_key()
+                        print("\n Доступные заклинания:\n")
+                        for i in range(len(self.spells)):
+                            spell = self.spells[i]
+                            print(f"[{i+1}] {spell.name}!", end="\t")
 
-                        match skillchoise:
-                            #Выбор фаербола
-                            case 1:
-                                fireball = Fireball("Фаерболл", 2, 4, 3, 0.5, 3)
-                                self.castSpell(fireball, enemy)
-                                return
+                        print(f"[{len(self.spells) + 1}] Вернуться назад!")
+                        
+                        choice = lib.get_key()
+                        if choice in range(1, len(self.spells)+1):
+                            self.castSpell(self.spells[choice-1], enemy)
+                            return
+                        # print(f"\nДоступные навыки:\n[1] Фаерболл! [2] Ледяной осколок! [3] Вернуться назад!")
+                        # skillchoise = lib.get_key()
+
+                        # match skillchoise:
+                        #     #Выбор фаербола
+                        #     case 1:
+                        #         fireball = Fireball("Фаерболл", 2, 4, 3, 0.5, 3)
+                        #         self.castSpell(fireball, enemy)
+                        #         return
 
 
-                            #Ледяной урон
-                            case 2:
-                                iceshard = IceShard("Ледяной осколок", 1, 2, 3, 0.5, 2)
-                                self.castSpell(iceshard, enemy)
-                                return
+                        #     #Ледяной урон
+                        #     case 2:
+                        #         iceshard = IceShard("Морозная свежесть", 1, 2, 3, 0.5, 2)
+                        #         self.castSpell(iceshard, enemy)
+                        #         return
 
 
-                            #Вернуться назад
-                            case 3:
-                               continue
+                        #     #Вернуться назад
+                        #     case 3:
+                        #        continue
