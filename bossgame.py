@@ -38,8 +38,11 @@ else:
     player = Player(playername, 20, 0)
 
 #Выдача оружия игроку: Weapon(название, минУрон, максУрон, +манаЗаУдар, вероятностьКрита, мультиплаерКрита, рисунок, рисунокКрита, звук)
-player.weapons.append(Weapon("Меч", 1, 3, 2, 0.5, 2, ASCII.drawsword, ASCII.drawswordcrit, sounds.swordsound))
-player.weapons.append(Weapon("Деревянная палка", 1, 1, 1, 0.1, 10, None, None, sounds.sticksound))
+sword = Weapon("Меч", 1, 3, 2, 0.5, 2, ASCII.drawsword, ASCII.drawswordcrit, sounds.swordsound)
+stick = Weapon("Деревянная палка", 1, 1, 1, 0.1, 10, None, None, sounds.sticksound)
+
+player.weapons.append(sword)
+player.weapons.append(stick)
 
 #Выдача заклинаний игроку: Spell(название, минУрон, максУрон, ценаМана)
 # У FireSpell два последние значения это вероятность поджога и длительность, у IceSpell - вероятность фризза и длительность
