@@ -1,11 +1,12 @@
 import os
 import time
+import arcade
 
 import sounds
 import ASCII
 
 from classesCharik import Charik, Player
-from classesSpell import Fireball, IceShard
+from classesSpell import FireSpell, IceSpell
 from classesWeapon import Weapon
 
 clear = lambda: os.system('cls')
@@ -24,13 +25,14 @@ if playername in ("Аллах", "Allah"):
 else:
     player = Player(playername, 20, 0)
 
-#Выдача оружия игроку
+#Выдача оружия игроку: Weapon(название, минУрон, максУрон, +манаЗаУдар, вероятностьКрита, мультиплаерКрита, рисунок, рисунокКрита, звук)
 player.weapons.append(Weapon("Меч", 1, 3, 2, 0.5, 2, ASCII.drawsword, ASCII.drawswordcrit, sounds.swordsound))
-player.weapons.append(Weapon("Деревянная палка", 1, 1, 1, 0.5, 2, None, None, None))
+player.weapons.append(Weapon("Деревянная палка", 1, 1, 1, 0.1, 10, None, None, sounds.sticksound))
 
-#Выдача заклинаний игроку
-player.spells.append(Fireball("Фаерболл", 2, 4, 3, 0.5, 3))
-player.spells.append(IceShard("Ледяная стрела", 1, 2, 3, 0.5, 2))
+#Выдача заклинаний игроку: Spell(название, минУрон, максУрон, ценаМана)
+# У FireSpell два последние значения это вероятность поджога и длительность, у IceSpell - вероятность фризза и длительность
+player.spells.append(FireSpell("Фаерболл", 2, 4, 3, 0.5, 3))
+player.spells.append(IceSpell("Ледяной осколок", 1, 2, 3, 0.5, 2))
     
 #Создание первого босса
 bossLelik = Charik("Лёлик", 35)
@@ -46,6 +48,7 @@ while bossLelik.alive == True:
 #Экран победы над первым боссом
 clear()
 print(ASCII.drawtrophy)
+arcade.play_sound(sounds.victorysound)
 print(f"Ты победил босса {bossLelik.name}!")
-time.sleep(1.35)
+time.sleep(5)
 exit()

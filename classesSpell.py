@@ -15,7 +15,7 @@ class Spell:
         self.maxDamage = maxDamage
         self.manaCost = manaCost
 
-class Fireball(Spell):
+class FireSpell(Spell):
     def __init__(self, name, minDamage, maxDamage, manaCost, burningChance, burningStrength):
         super().__init__(name, minDamage, maxDamage, manaCost)
         self.burningChance = burningChance
@@ -51,7 +51,7 @@ class Fireball(Spell):
             print(ASCII.drawfireballfailed)
             print (f"{self.name} взорвался в руке {spellcaster.name} и нанёс 1 урона! Текущее здоровье: {spellcaster.hp}")
 
-class IceShard(Spell):
+class IceSpell(Spell):
     def __init__(self, name, minDamage, maxDamage, manaCost, freezeChance, freezeStrength):
         super().__init__(name, minDamage, maxDamage, manaCost)
         self.freezeChance = freezeChance

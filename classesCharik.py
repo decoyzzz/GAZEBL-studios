@@ -105,16 +105,19 @@ class Player(Charik):
             while True:
                 clear()
                 print(ASCII.drawmain.format(playername=self.name, bossname=enemy.name))
-                print(f"Твоё хп: {self.hp} | Твоя мана: {self.mana} | Хп Босса: {enemy.hp}\n [1] Атаковать с оружием! [2] Восстановить здоровье! [3] Использовать заклинание!")
+                print(f"Твоё хп: {self.hp} | Твоя мана: {self.mana} | Хп Босса: {enemy.hp}\n [1] Выбрать оружие для атаки! [2] Восстановить здоровье! [3] Выбрать заклинание для атаки!")
                 action = lib.get_key()
 
                 match action:
                     #Удар мечом
                     case 1:
-                        print("\nДоступное оружие:\n")
+                        print("\nДоступное оружие:")
                         for i in range(len(self.weapons)):
                             weapon = self.weapons[i]
-                            print(f"[{i+1}] {weapon.name}!", end="\t")
+                            if weapon.minDamage != weapon.maxDamage:
+                                print(f"[{i+1}] {weapon.name}! (Урон: {weapon.minDamage}-{weapon.maxDamage})")
+                            else : 
+                                print(f"[{i+1}] {weapon.name}! (Урон: {weapon.minDamage})")
 
                         print(f"[{len(self.spells) + 1}] Вернуться назад!")
                         
@@ -168,10 +171,10 @@ class Player(Charik):
 
                     #Меню выбора навыков
                     case 3:
-                        print("\nДоступные заклинания:\n")
+                        print("\nДоступные заклинания:")
                         for i in range(len(self.spells)):
                             spell = self.spells[i]
-                            print(f"[{i+1}] {spell.name}!", end="\t")
+                            print(f"[{i+1}] {spell.name}! (Цена: {spell.manaCost})")
 
                         print(f"[{len(self.spells) + 1}] Вернуться назад!")
                         
