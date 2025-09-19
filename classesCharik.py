@@ -6,7 +6,6 @@ import time
 import ASCII
 import sounds
 import lib
-from classesSpell import Fireball, IceShard
 
 clear = lambda: os.system('cls')
 
@@ -70,9 +69,13 @@ class Player(Charik):
     def __init__(self, name="Player", hp=-1, mana=-1):
         super().__init__(name, hp, mana)
         self.spells=[]
+        self.weapons=[]
 
     def castSpell(self, spell, target):
         spell.cast(self, target)
+
+    def attackWithWeapon(self, weapon, target):
+        weapon.attack(self, target)
 
     def makeMove(self, enemy):
 
@@ -96,41 +99,52 @@ class Player(Charik):
 
         else:
             #Переменные для хода игрока
-            self.damage = random.randint(1, 3)
             self.heal = random.randint(1, 3)
             
             #Цикл игрока
             while True:
                 clear()
                 print(ASCII.drawmain.format(playername=self.name, bossname=enemy.name))
-                print(f"Твоё хп: {self.hp} | Твоя мана: {self.mana} | Хп Босса: {enemy.hp}\n [1] Ударить мечом! [2] Восстановить здоровье! [3] Меню выбора навыков!")
+                print(f"Твоё хп: {self.hp} | Твоя мана: {self.mana} | Хп Босса: {enemy.hp}\n [1] Атаковать с оружием! [2] Восстановить здоровье! [3] Использовать заклинание!")
                 action = lib.get_key()
 
                 match action:
                     #Удар мечом
                     case 1:
+                        print("\nДоступное оружие:\n")
+                        for i in range(len(self.weapons)):
+                            weapon = self.weapons[i]
+                            print(f"[{i+1}] {weapon.name}!", end="\t")
+
+                        print(f"[{len(self.spells) + 1}] Вернуться назад!")
+                        
+                        choice = lib.get_key()
+                        if choice in range(1, len(self.weapons)+1):
+                            self.attackWithWeapon(self.weapons[choice-1], enemy)
+                            return
+                        
                         #крит для меча
-                        if random.random() > 0.66:
-                            self.mana += self.damage
-                            self.damage = self.damage * 2
-                            enemy.getDamage(self.damage)
+                        # if random.random() > 0.66:
+                        #     self.mana += self.damage
+                        #     self.damage = self.damage * 2
+                        #     enemy.getDamage(self.damage)
 
-                            clear()
-                            print(ASCII.drawswordcrit)
-                            arcade.play_sound(sounds.swordsound)
-                            print(f"{self.name} нанёс {self.damage} критического урона! Здоровье {enemy.name}: {enemy.hp}")
-                            return
+                        #     clear()
+                        #     print(ASCII.drawswordcrit)
+                        #     arcade.play_sound(sounds.swordsound)
+                        #     print(f"{self.name} нанёс {self.damage} критического урона! Здоровье {enemy.name}: {enemy.hp}")
+                        #     return
 
 
-                        else:
-                            self.mana += self.damage
-                            enemy.getDamage(self.damage)
+                        # else:
+                        #     self.mana += self.damage
+                        #     enemy.getDamage(self.damage)
 
-                            clear()
-                            print(ASCII.drawsword)
-                            arcade.play_sound(sounds.swordsound)
-                            print(f"{self.name} нанёс {self.damage} урона! Здоровье {enemy.name}: {enemy.hp}")
-                            return
+                        #     clear()
+                        #     print(ASCII.drawsword)
+                        #     arcade.play_sound(sounds.swordsound)
+                        #     print(f"{self.name} нанёс {self.damage} урона! Здоровье {enemy.name}: {enemy.hp}")
+                        #     return
 
                     #Хилка
                     case 2:
@@ -154,7 +168,7 @@ class Player(Charik):
 
                     #Меню выбора навыков
                     case 3:
-                        print("\n Доступные заклинания:\n")
+                        print("\nДоступные заклинания:\n")
                         for i in range(len(self.spells)):
                             spell = self.spells[i]
                             print(f"[{i+1}] {spell.name}!", end="\t")
@@ -165,6 +179,7 @@ class Player(Charik):
                         if choice in range(1, len(self.spells)+1):
                             self.castSpell(self.spells[choice-1], enemy)
                             return
+                        
                         # print(f"\nДоступные навыки:\n[1] Фаерболл! [2] Ледяной осколок! [3] Вернуться назад!")
                         # skillchoise = lib.get_key()
 
