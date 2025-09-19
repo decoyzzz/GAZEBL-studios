@@ -33,6 +33,7 @@ player.weapons.append(Weapon("Деревянная палка", 1, 1, 1, 0.1, 10
 # У FireSpell два последние значения это вероятность поджога и длительность, у IceSpell - вероятность фризза и длительность
 player.spells.append(FireSpell("Фаерболл", 2, 4, 3, 0.5, 3))
 player.spells.append(IceSpell("Ледяной осколок", 1, 2, 3, 0.5, 2))
+player.spells.append(FireSpell("Поджог", 0, 1, 2, 1, 2))
     
 #Создание первого босса
 bossLelik = Charik("Лёлик", 35)
