@@ -1,4 +1,5 @@
 import msvcrt
+import importlib
 
 #Функция считывания нажатой клавиши
 def get_key():
@@ -11,3 +12,8 @@ def get_key():
         return int(key.decode())
     except ValueError:
         return None  # если не цифра
+
+#Функция для считывания стрингов с разных языковых папок    
+def s(lang, stringName):
+    strings = importlib.import_module(f"lang.{lang}.strings")
+    return strings.strings.get(stringName, stringName)
