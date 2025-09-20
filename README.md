@@ -18,9 +18,11 @@ The player can fight bosses, cast different spells, and switch between languages
 Install dependencies:
 ```bash
 pip install arcade
+```
 
-## How to run
-
+## Requirements
+```
 git clone https://github.com/yourusername/your-repo.git
 cd your-repo
 python bossgame.py
+```
