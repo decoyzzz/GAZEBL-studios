@@ -12,10 +12,9 @@ clear = lambda: os.system('cls')
 
 class Charik:
 
-    def __init__(self,name = "unnamed Charik", hp = 10, mana = 0):
+    def __init__(self,name = "unnamed Charik", hp = 10):
         self.name = name
         self.hp = hp
-        self.mana = mana
         self.alive = True
         self.freezebuildup = 0
         self.fire_dot_damage = 0
@@ -26,8 +25,9 @@ class Charik:
         if self.hp <= 0:
             self.alive = False
 
-    def attack(self, target, damage=1):
-        target.getDamage(damage)
+    def attack(self, target):
+        self.damage = random.randint(1, 3)
+        target.getDamage(self.damage)
 
         clear()
         print(ASCII.drawbossattack)
@@ -51,8 +51,7 @@ class Charik:
                 self.freezebuildup -= 1
 
             else:
-                self.damage = random.randint(1, 3)
-                self.attack(enemy, self.damage)
+                self.attack(enemy)
 
             if self.fire_dot_damage > 0:
                 time.sleep(1.9)
@@ -67,8 +66,9 @@ class Charik:
 
 class Player(Charik):
 
-    def __init__(self, name="Player", hp=-1, mana=-1):
-        super().__init__(name, hp, mana)
+    def __init__(self, name="Player", hp=10, mana=0):
+        super().__init__(name, hp)
+        self.mana = mana
         self.spells=[]
         self.weapons=[]
 
@@ -83,8 +83,8 @@ class Player(Charik):
         if self.alive == False:
 
             clear()
-            print(ASCII.drawtemplate)
-            print({s(l,'YOU_LOOSE!')})
+            print(ASCII.drawplayerdead.format(playername=self.name))
+            print(s(l,'YOU_LOOSE!'))
 
             # os.system("shutdown /s /t 5")
             # return
@@ -209,3 +209,22 @@ class Player(Charik):
                         #     #Вернуться назад
                         #     case 3:
                         #        continue
+
+class Enemy(Charik):
+    def __init__(self, name = "unnamed Enemy", hp = 10, minDamage = 1, maxDamage = 3):
+        self.name = name
+        self.hp = hp
+        self.minDamage = minDamage
+        self.maxDamage = maxDamage
+        self.alive = True
+        self.freezebuildup = 0
+        self.fire_dot_damage = 0
+
+    def attack(self, target):
+        self.damage = random.randint(self.minDamage, self.maxDamage)
+        target.getDamage(self.damage)
+
+        clear()
+        print(ASCII.drawbossattack)
+        arcade.play_sound(sounds.bossattack)
+        print (f"{self.name} {s(l,'dealt')} {target.name} {self.damage} {s(l,'damage!')}!")
