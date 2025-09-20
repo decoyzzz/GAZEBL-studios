@@ -55,7 +55,7 @@ class Charik:
                 self.attack(enemy, self.damage)
 
             if self.fire_dot_damage > 0:
-                time.sleep(1.4)
+                time.sleep(1.9)
                 clear()
                 print(ASCII.drawbossfiredamage)
                 arcade.play_sound(sounds.burningsound)

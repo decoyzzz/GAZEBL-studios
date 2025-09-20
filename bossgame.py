@@ -55,10 +55,10 @@ firstBoss = Charik("Лёлик", 35)
 
 while firstBoss.alive == True:
     player.makeMove(firstBoss)
-    time.sleep(1.7)
+    time.sleep(1.9)
 
     firstBoss.makeMove(player)
-    time.sleep(1.7)
+    time.sleep(1.9)
 
 
 #Экран победы над первым боссом

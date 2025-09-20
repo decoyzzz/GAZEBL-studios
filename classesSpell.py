@@ -37,7 +37,7 @@ class FireSpell(Spell):
             if random.random() < self.burningChance:
                 target.fire_dot_damage = self.burningStrength
 
-                time.sleep(1.4)
+                time.sleep(1.9)
                 clear()
                 print(ASCII.drawbossfiredamage)
                 arcade.play_sound(sounds.burningsound)
@@ -72,7 +72,7 @@ class IceSpell(Spell):
             if random.random() < self.freezeChance:
                 target.freezebuildup = self.freezeStrength
 
-                time.sleep(1.4)
+                time.sleep(1.9)
                 clear()
                 print(ASCII.drawbossfreeze)
                 print(f"{self.name} заморозил {target.name} на {self.freezeStrength} хода(ов)!")
