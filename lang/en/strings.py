@@ -5,5 +5,21 @@ strings = {
     "fireball": "Fireball",
     "iceshard": "Ice shard",
     "ignition": "Ignition",
-    "you_defeated" : "You defeated {boss}!"
+    "you_defeated" : "You defeated",
+    "lolik" : "Lolik",
+    "dealt" : "dealt to the",
+    "damage!" : "damage!",
+    "is_dead!" : "s dead!",
+    "is_freezed_and_skips_their_move!" : "is freezed and skips their move!",
+    "takes" : "takes",
+    "fire_damage!" : "fire damage!",
+    "YOU_LOOSE!" : "YOU LOOSE!",
+    "is_freezed_for" : "is freezed for",
+    "more_moves!" : "more moves!",
+    "your_hp" : "Your hp",
+    "your_mana" : "Your mana",
+    "enemys_hp" : "Enemy's hp",
+    "Damage" : "Damage",
+    "back" : "Back",
+    "cost" : "Cost"
 }

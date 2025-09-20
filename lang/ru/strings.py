@@ -5,5 +5,21 @@ strings = {
     "fireball": "Фаерболл",
     "iceshard": "Ледяной осколок",
     "ignition": "Поджог",
-    "you_defeated" : "Ты победил босса {boss}!"
+    "you_defeated" : "Ты победил босса",
+    "lolik" : "Лёлик",
+    "dealt" : "нанёс",
+    "damage!" : "урона!",
+    "is_dead!" : "мертв!",
+    "is_freezed_and_skips_their_move!" : "заморожен и пропускает ход!",
+    "takes" : "получает",
+    "fire_damage!" : "урона от огня!",
+    "YOU_LOOSE!" : "ТЫ ПРОГРАЛ!",
+    "is_freezed_for" : "заморожен еще",
+    "more_moves!" : "хода(ов)!",
+    "your_hp" : "Твоё хп",
+    "your_mana" : "Твоя мана",
+    "enemys_hp" : "Хп врага",
+    "Damage" : "Урон",
+    "back" : "Вернуться назад",
+    "back" : "Цена"
 }
