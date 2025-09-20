@@ -1,5 +1,8 @@
+import os
 import msvcrt
 import importlib
+
+clear = lambda: os.system('cls')
 
 #Функция считывания нажатой клавиши
 def get_key():
@@ -15,14 +18,17 @@ def get_key():
 
 l = None
 def chooseLanguage():
-    print("Choose language / Выберите язык ")
-    print("[1]English [2]Русский")
-    choice = get_key()
-
     global l
-    match choice:
-        case 1: l = "en"
-        case 2:  l = "ru"
+    while l != "en" and l !="ru":
+        clear()
+        print("Choose language / Выберите язык ")
+        print("[1]English [2]Русский")
+        choice = get_key()
+
+        match choice:
+            case 1: l = "en"
+            case 2: l = "ru"
+            case _: pass
 
 #Функция для считывания стрингов с разных языковых папок    
 def s(lang, stringName):
