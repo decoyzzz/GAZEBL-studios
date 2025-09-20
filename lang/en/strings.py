@@ -13,7 +13,7 @@ strings = {
     "is_freezed_and_skips_their_move!" : "is freezed and skips their move!",
     "takes" : "takes",
     "fire_damage!" : "fire damage!",
-    "YOU_LOOSE!" : "YOU LOOSE!",
+    "YOU_LOOSE!" : "YOU DIED!",
     "is_freezed_for" : "is freezed for",
     "more_moves!" : "more moves!",
     "your_hp" : "Your hp",

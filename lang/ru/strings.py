@@ -5,7 +5,7 @@ strings = {
     "fireball": "Фаерболл",
     "iceshard": "Ледяной осколок",
     "ignition": "Поджог",
-    "you_defeated" : "Ты победил босса",
+    "you_defeated" : "Ты победил",
     "lolik" : "Лёлик",
     "dealt" : "нанёс",
     "damage!" : "урона!",
@@ -13,7 +13,7 @@ strings = {
     "is_freezed_and_skips_their_move!" : "заморожен и пропускает ход!",
     "takes" : "получает",
     "fire_damage!" : "урона от огня!",
-    "YOU_LOOSE!" : "ТЫ ПРОГРАЛ!",
+    "YOU_LOOSE!" : "ТЫ СДОХ!",
     "is_freezed_for" : "заморожен еще",
     "more_moves!" : "хода(ов)!",
     "your_hp" : "Твоё хп",
@@ -21,5 +21,5 @@ strings = {
     "enemys_hp" : "Хп врага",
     "Damage" : "Урон",
     "back" : "Вернуться назад",
-    "back" : "Цена"
+    "cost" : "Цена"
 }
