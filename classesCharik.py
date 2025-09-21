@@ -5,7 +5,7 @@ import time
 
 import ASCII
 import sounds
-from lib import s, l, get_key
+from lib import s, get_key
 from classesSpell import IceSpell
 
 clear = lambda: os.system('cls')
@@ -32,13 +32,13 @@ class Charik:
         clear()
         print(ASCII.drawbossattack)
         arcade.play_sound(sounds.bossattack)
-        print (f"{self.name} {s(l,'dealt')} {target.name} {self.damage} {s(l,'damage!')}!")
+        print (f"{self.name} {s('dealt')} {target.name} {self.damage} {s('damage!')}!")
 
     def makeMove(self, enemy):
         if self.alive == False:
             clear()
             print(ASCII.drawbossdead)
-            print(f"{self.name} {s(l,'is_dead!')}")
+            print(f"{self.name} {s('is_dead!')}")
         
         else:
 
@@ -46,7 +46,7 @@ class Charik:
                 
                 clear()
                 print(ASCII.drawbossfreeze)
-                print(f"{self.name} {s(l,'is_freezed_and_skips_their_move!')}")
+                print(f"{self.name} {s('is_freezed_and_skips_their_move!')}")
                 
                 self.freezebuildup -= 1
 
@@ -58,7 +58,7 @@ class Charik:
                 clear()
                 print(ASCII.drawbossfiredamage)
                 arcade.play_sound(sounds.burningsound)
-                print(f"{self.name} {s(l,'takes')} {self.fire_dot_damage} {s(l,'fire_damage!')}")
+                print(f"{self.name} {s('takes')} {self.fire_dot_damage} {s('fire_damage!')}")
 
                 self.getDamage(self.fire_dot_damage)
                 self.fire_dot_damage -= 1
@@ -84,7 +84,7 @@ class Player(Charik):
 
             clear()
             print(ASCII.drawplayerdead.format(playername=self.name))
-            print(s(l,'YOU_LOOSE!'))
+            print(s('YOU_LOOSE!'))
 
             # os.system("shutdown /s /t 5")
             # return
@@ -95,7 +95,7 @@ class Player(Charik):
             clear()
             print(ASCII.drawtemplate)
             arcade.play_sound(sounds.iceshardsound)
-            print(f"{self.name} {s(l,'is_freezed_for')} {self.freezebuildup} {s(l,'more_moves!')}")
+            print(f"{self.name} {s('is_freezed_for')} {self.freezebuildup} {s('more_moves!')}")
             
             self.freezebuildup -= 1
 
@@ -107,7 +107,7 @@ class Player(Charik):
             while True:
                 clear()
                 print(ASCII.drawmain.format(playername=self.name, bossname=enemy.name))
-                print(f"{s(l,'your_hp')}: {self.hp} | {s(l,'your_mana')}: {self.mana} | {s(l,'enemys_hp')}: {enemy.hp}\n [1] Выбрать оружие для атаки! [2] Восстановить здоровье! [3] Выбрать заклинание для атаки!")
+                print(f"{s('your_hp')}: {self.hp} | {s('your_mana')}: {self.mana} | {s('enemys_hp')}: {enemy.hp}\n [1] Выбрать оружие для атаки! [2] Восстановить здоровье! [3] Выбрать заклинание для атаки!")
                 action = get_key()
 
                 match action:
@@ -117,11 +117,11 @@ class Player(Charik):
                         for i in range(len(self.weapons)):
                             weapon = self.weapons[i]
                             if weapon.minDamage != weapon.maxDamage:
-                                print(f"[{i+1}] {weapon.name}! ({s(l,'Damage')}: {weapon.minDamage}-{weapon.maxDamage})")
+                                print(f"[{i+1}] {weapon.name}! ({s('Damage')}: {weapon.minDamage}-{weapon.maxDamage})")
                             else : 
-                                print(f"[{i+1}] {weapon.name}! ({s(l,'Damage')}: {weapon.minDamage})")
+                                print(f"[{i+1}] {weapon.name}! ({s('Damage')}: {weapon.minDamage})")
 
-                        print(f"[{len(self.weapons) + 1}] {s(l,'back')}!")
+                        print(f"[{len(self.weapons) + 1}] {s('back')}!")
                         
                         choice = get_key()
                         if choice in range(1, len(self.weapons)+1):
@@ -176,9 +176,9 @@ class Player(Charik):
                         print("\nДоступные заклинания:")
                         for i in range(len(self.spells)):
                             spell = self.spells[i]
-                            print(f"[{i+1}] {spell.name}! ({s(l,'cost')}: {spell.manaCost})")
+                            print(f"[{i+1}] {spell.name}! ({s('cost')}: {spell.manaCost})")
 
-                        print(f"[{len(self.spells) + 1}] {s(l,'back')}!")
+                        print(f"[{len(self.spells) + 1}] {s('back')}!")
                         
                         choice = get_key()
                         if choice in range(1, len(self.spells)+1):
@@ -227,4 +227,4 @@ class Enemy(Charik):
         clear()
         print(ASCII.drawbossattack)
         arcade.play_sound(sounds.bossattack)
-        print (f"{self.name} {s(l,'dealt')} {target.name} {self.damage} {s(l,'damage!')}!")
+        print (f"{self.name} {s('dealt')} {target.name} {self.damage} {s('damage!')}!")

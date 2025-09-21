@@ -16,34 +16,29 @@ def get_key():
     except ValueError:
         return None  # если не цифра
 
-l = None
+
+_strings = None
 def chooseLanguage():
-    global l
-    while l != "en" and l !="ru":
-        clear()
-        print("Choose language / Выберите язык ")
-        print("[1]English [2]Русский")
-        choice = get_key()
+    global l, _strings
+    print("Choose language / Выберите язык ")
+    print("[1] English [2] Русский")
+    choice = get_key()
 
-        match choice:
-            case 1: l = "en"
-            case 2: l = "ru"
-            case _: pass
-
-#Функция для считывания стрингов с разных языковых папок    
-
-def s(lang, stringName):
-    global l
-    lang = l
+    match choice:
+        case 1: l = "en"
+        case 2: l = "ru"
 
     if getattr(sys, 'frozen', False):
-        # путь для exe
+        # exe
         base_path = sys._MEIPASS
     else:
         base_path = os.path.dirname(__file__)
 
-    # формируем полный путь к модулю
+    # Добавляем путь к lang в sys.path, чтобы importlib его нашёл
     sys.path.append(os.path.join(base_path, "lang"))
 
-    strings = importlib.import_module(f"{lang}.strings")
-    return strings.strings.get(stringName, stringName)
+    _strings = importlib.import_module(f"{l}.strings").strings
+
+def s(stringName):
+    global _strings
+    return _strings.get(stringName, stringName)
