@@ -23,7 +23,7 @@ class Weapon:
 
         #крит для оружия
         if random.random() < self.critChance:
-            attacker.mana += self.damage
+            attacker.restoreMana(self.manaPerHit)
             self.damage = self.damage * self.critMultiplier
             target.getDamage(self.damage)
 
@@ -35,7 +35,7 @@ class Weapon:
             return
 
         else:
-            attacker.mana += self.damage
+            attacker.restoreMana(self.manaPerHit)
             target.getDamage(self.damage)
 
             clear()

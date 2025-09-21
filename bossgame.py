@@ -9,6 +9,7 @@ from lib import chooseLanguage, get_key, s
 from classesCharik import Player, Enemy
 from classesSpell import FireSpell, IceSpell
 from classesWeapon import Weapon
+from classesPotion import HealPotion, ManaPotion
 
 clear = lambda: os.system('cls')
 
@@ -26,7 +27,7 @@ while len(playername) > 5 or len(playername) < 3:
 #Пасхалкоу
 match playername:
     case "Аллах" | "Allah":
-        player = Player(playername, 999, 999)
+        player = Player(playername, 999, 999, 999)
     case "dodik":
         player = Player(playername, 1, 0)
     case _:
@@ -36,6 +37,9 @@ match playername:
 stick = Weapon(s("wooden_stick"), 1, 1, 1, 0.2, 5, None, None, sounds.sticksound)
 player.weapons.append(stick)
 
+#Выдача игроку зелья
+player.potions.append(HealPotion("Зелье здоровья", 1, 3))
+player.potions.append(ManaPotion("Зелье магии", 2, 5))
     
 #Создание первого врага
 worm = Enemy("Червь", 5, 1, 1)
