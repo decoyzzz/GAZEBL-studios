@@ -88,7 +88,7 @@ print(f"{s('you_defeated')} {fatWorm.name}!")
 time.sleep(5)
 
 #Выдача заклинания на выбор
-while len(player.spells) == 0:
+while len(player.spells) == 1:
     clear()
     print(ASCII.drawtemplate)
     print("Тебе доступно 1 заклинание на выбор:")

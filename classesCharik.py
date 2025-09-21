@@ -134,16 +134,7 @@ class Player(Charik):
                 clear()
                 print(ASCII.drawmain.format(playername=self.name, bossname=enemy.name))
                 print(f"{s('your_hp')}: {self.hp}/{self.maxHp} | {s('your_mana')}: {self.mana}/{self.maxMana} | {s('enemys_hp')}: {enemy.hp}\n")
-                actionNumber = 1
-                if(self.weapons):
-                    print(f"[{actionNumber}]Выбрать оружие для атаки!")
-                    actionNumber += 1
-                if(self.potions):
-                    print(f"[{actionNumber}]Выбрать зелье для использования!")
-                    actionNumber += 1
-                if(self.spells):
-                    print(f"[{actionNumber}]Выбрать заклинание для атаки!")
-                    actionNumber += 1
+                print(f"[1]Выбрать оружие для атаки! [2]Выбрать зелье для использования! [3]Выбрать заклинание для атаки!")
                 action = get_key()
 
                 match action:
@@ -166,7 +157,8 @@ class Player(Charik):
 
                     #Меню выбора зелья
                     case 2:
-                        print("\nДоступные зелья:")
+                        print("\nСумка со снадобьями:")
+                        if not self.potions: print("Пусто")
                         for i in range(len(self.potions)):
                             potion = self.potions[i]
                             print(f"[{i+1}] ({potion.count}){potion.name}! (Сила: {potion.strength})")
