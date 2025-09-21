@@ -21,7 +21,7 @@ class HealPotion(Potion):
             clear()
             print(ASCII.drawheal)
             arcade.play_sound(sounds.healsound)
-            print(f"{self.name} дало {self.strength} ХП. Текущее здоровье :{recipient.hp} ")
+            print(f"{recipient.name} выпил {self.name}. Текущее здоровье: {recipient.hp}")
             return
 
 class ManaPotion(Potion):
@@ -33,5 +33,5 @@ class ManaPotion(Potion):
         clear()
         print(ASCII.drawtemplate)
         arcade.play_sound(sounds.healsound)
-        print(f"{self.name} дало {self.strength} маны. Текущая мана :{recipient.mana} ")
+        print(f"{recipient.name} выпил {self.name}. Текущая мана: {recipient.mana}")
         return

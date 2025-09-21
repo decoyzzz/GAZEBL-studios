@@ -1,4 +1,4 @@
-import os
+import os, sys
 import random
 import arcade
 import time
@@ -27,6 +27,18 @@ class Charik:
 
     def getHealed(self, healPoints):
         self.hp = min(self.maxHp, self.hp + healPoints)
+
+    def useMana(self, manaPoints):
+        if self.mana >= manaPoints:
+            self.mana -= manaPoints
+            return True
+        else:
+            self.mana = 0
+
+            clear()
+            print(ASCII.drawtemplate)
+            print(f"Недостаточно маны...")
+            return False
 
     def restoreMana(self, manaPoints):
         self.mana = min(self.maxMana, self.mana + manaPoints)
@@ -100,7 +112,9 @@ class Player(Charik):
 
             # os.system("shutdown /s /t 5")
             # return
-            exit()
+            print("Press any key to exit...")
+            get_key()
+            sys.exit()
         
         elif self.freezebuildup > 0:
 
@@ -128,7 +142,7 @@ class Player(Charik):
                     print(f"[{actionNumber}]Выбрать зелье для использования!")
                     actionNumber += 1
                 if(self.spells):
-                    print(f"[{actionNumber}]Выбрать оружие для атаки!")
+                    print(f"[{actionNumber}]Выбрать заклинание для атаки!")
                     actionNumber += 1
                 action = get_key()
 

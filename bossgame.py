@@ -1,3 +1,4 @@
+#python -m PyInstaller --onefile bossgame.py --add-data "sounds;sounds" --add-data "lang;lang"
 import os
 import time
 import arcade
@@ -7,7 +8,7 @@ import ASCII
 from lib import chooseLanguage, get_key, s
 
 from classesCharik import Player, Enemy
-from classesSpell import FireSpell, IceSpell
+from classesSpell import FireSpell, IceSpell, HealSpell
 from classesWeapon import Weapon
 from classesPotion import HealPotion, ManaPotion
 
@@ -40,6 +41,8 @@ player.weapons.append(stick)
 #Выдача игроку зелья
 player.potions.append(HealPotion("Зелье здоровья", 1, 3))
 player.potions.append(ManaPotion("Зелье магии", 2, 5))
+
+player.spells.append(HealSpell("Лечение", 4, 3))
     
 #Создание первого врага
 worm = Enemy("Червь", 5, 1, 1)
@@ -119,3 +122,6 @@ time.sleep(5)
 # player.spells.append(FireSpell(s("fireball"), 2, 4, 3, 0.5, 3))
 # player.spells.append(IceSpell(s("iceshard"), 1, 2, 3, 0.5, 2))
 # player.spells.append(FireSpell(s("ignition"), 0, 1, 2, 1, 2))
+
+print("Press any key to exit...")
+get_key()

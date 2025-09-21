@@ -88,3 +88,19 @@ class IceSpell(Spell):
             print(ASCII.drawfireballfailed)
             print(f"{self.name} обморозил руку и нанёс 1 урона! Текущее здоровье: {spellcaster.hp} ")
             return
+        
+class HealSpell(Spell):
+    def __init__(self, name, healPoints, manaCost):
+        self.name = name
+        self.healPonts = healPoints
+        self.manaCost = manaCost
+
+    def cast(self, spellcaster, target):
+        if spellcaster.useMana(self.manaCost):
+            
+            spellcaster.getHealed(self.healPonts)
+
+            clear()
+            print(ASCII.drawfireballfailed)
+            print(f"{spellcaster.name} использует лечащее заклинание! Здоровье {spellcaster.name}: {spellcaster.hp}")                 
+            return
