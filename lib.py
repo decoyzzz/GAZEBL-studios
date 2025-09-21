@@ -1,4 +1,4 @@
-import os
+import os, sys
 import msvcrt
 import importlib
 
@@ -31,7 +31,19 @@ def chooseLanguage():
             case _: pass
 
 #Функция для считывания стрингов с разных языковых папок    
+
 def s(lang, stringName):
+    global l
     lang = l
-    strings = importlib.import_module(f"lang.{lang}.strings")
+
+    if getattr(sys, 'frozen', False):
+        # путь для exe
+        base_path = sys._MEIPASS
+    else:
+        base_path = os.path.dirname(__file__)
+
+    # формируем полный путь к модулю
+    sys.path.append(os.path.join(base_path, "lang"))
+
+    strings = importlib.import_module(f"{lang}.strings")
     return strings.strings.get(stringName, stringName)

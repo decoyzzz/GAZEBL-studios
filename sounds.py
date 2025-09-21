@@ -1,12 +1,18 @@
+import sys, os
 import arcade
+
+if getattr(sys, 'frozen', False):  
+    basedir = sys._MEIPASS
+else:
+    basedir = os.path.dirname(os.path.abspath(__file__))
 
 
 #Звуки
-swordsound = arcade.load_sound("sounds/sword.wav")
-healsound = arcade.load_sound("sounds/heal.wav")
-bossattack = arcade.load_sound("sounds/bossattack.wav")
-fireballsound = arcade.load_sound("sounds/fireball.wav")
-iceshardsound = arcade.load_sound("sounds/iceshard.wav")
-burningsound = arcade.load_sound("sounds/burning.wav")
-sticksound = arcade.load_sound("sounds/stick.wav")
-victorysound = arcade.load_sound("sounds/victory.wav")
+swordsound = arcade.load_sound(f"{basedir}/sounds/sword.wav")
+healsound = arcade.load_sound(f"{basedir}/sounds/heal.wav")
+bossattack = arcade.load_sound(f"{basedir}/sounds/bossattack.wav")
+fireballsound = arcade.load_sound(f"{basedir}/sounds/fireball.wav")
+iceshardsound = arcade.load_sound(f"{basedir}/sounds/iceshard.wav")
+burningsound = arcade.load_sound(f"{basedir}/sounds/burning.wav")
+sticksound = arcade.load_sound(f"{basedir}/sounds/stick.wav")
+victorysound = arcade.load_sound(f"{basedir}/sounds/victory.wav")
