@@ -53,6 +53,8 @@ class Charik:
         print (f"{self.name} {s('dealt')} {target.name} {self.damage} {s('damage!')}!")
 
     def makeMove(self, enemy):
+        print("============ХОД ПРОТИВНИКА============",end='')
+
         if self.alive == False:
             clear()
             print(ASCII.drawbossdead)
@@ -79,12 +81,12 @@ class Charik:
                 print(f"{self.name} {s('takes')} {self.fire_dot_damage} {s('fire_damage!')}")
 
                 self.getDamage(self.fire_dot_damage)
-                self.fire_dot_damage -= 1
+                self.fire_dot_damage -= 5
 
 
 class Player(Charik):
 
-    def __init__(self, name="Player", maxHp=10, mana=0, maxMana = 30):
+    def __init__(self, name="Player", maxHp=100, mana=0, maxMana = 100):
         super().__init__(name, maxHp)
         self.mana = mana
         self.maxMana = maxMana
@@ -103,7 +105,6 @@ class Player(Charik):
         weapon.attack(self, target)
 
     def makeMove(self, enemy):
-
         if self.alive == False:
 
             clear()
@@ -129,9 +130,10 @@ class Player(Charik):
             #Переменные для хода игрока
             self.heal = random.randint(1, 3)
             
-            #Цикл игрока
+            #Ход игрока
             while True:
                 clear()
+                print("===============ТВОЙ ХОД===============",end='')
                 print(ASCII.drawmain.format(playername=self.name, bossname=enemy.name))
                 print(f"{s('your_hp')}: {self.hp}/{self.maxHp} | {s('your_mana')}: {self.mana}/{self.maxMana} | {s('enemys_hp')}: {enemy.hp}\n")
                 print(f"[1]Выбрать оружие для атаки! [2]Выбрать зелье для использования! [3]Выбрать заклинание для атаки!")

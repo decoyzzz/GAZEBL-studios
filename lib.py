@@ -18,15 +18,18 @@ def get_key():
 
 
 _strings = None
+l = None
 def chooseLanguage():
     global l, _strings
-    print("Choose language / Выберите язык ")
-    print("[1] English [2] Русский")
-    choice = get_key()
+    while l not in ("en","ru"):
+        clear()
+        print("Choose language / Выберите язык ")
+        print("[1] English(WIP) [2] Русский")
+        choice = get_key()
 
-    match choice:
-        case 1: l = "en"
-        case 2: l = "ru"
+        match choice:
+            case 1: l = "en"
+            case 2: l = "ru"
 
     if getattr(sys, 'frozen', False):
         # exe

@@ -20,32 +20,34 @@ clear = lambda: os.system('cls')
 chooseLanguage()
 
 #Считывание и проверка длины имени игрока
+clear()
 playername = input(s("enter_your_name"))
 while len(playername) > 5 or len(playername) < 3:
+    clear()
     print("Размер имени от 3 до 5 символов...")
     playername = input(s("enter_your_name"))
 
 #Пасхалкоу
 match playername:
     case "Аллах" | "Allah":
-        player = Player(playername, 999, 999, 999)
+        player = Player(playername, 9999, 9999, 9999)
     case "dodik":
         player = Player(playername, 1, 0)
     case _:
-        player = Player(playername, 20, 0)
+        player = Player(playername, 100, 0)
 
 #Выдача оружия игроку: Weapon(название, минУрон, максУрон, +манаЗаУдар, вероятностьКрита, мультиплаерКрита, рисунок, рисунокКрита, звук)
-stick = Weapon(s("wooden_stick"), 1, 1, 1, 0.2, 5, None, None, sounds.sticksound)
+stick = Weapon(s("wooden_stick"), 5, 5, 5, 0.2, 5, None, None, sounds.sticksound)
 player.weapons.append(stick)
 
 #Выдача игроку зелья
-player.potions.append(HealPotion("Зелье здоровья", 1, 3))
-player.potions.append(ManaPotion("Зелье магии", 2, 5))
+player.potions.append(HealPotion("Зелье здоровья", 2, 20))
+player.potions.append(ManaPotion("Зелье магии", 2, 25))
 
-player.spells.append(HealSpell("Лечение", 4, 3))
+player.spells.append(HealSpell("Лечение", 20, 25))
     
 #Создание первого врага
-worm = Enemy("Червь", 5, 1, 1)
+worm = Enemy("Червь", 25, 5, 5)
 
 while worm.alive == True:
     player.makeMove(worm)
@@ -65,13 +67,13 @@ time.sleep(5)
 #Выдача игроку меча
 clear()
 print(ASCII.drawtemplate)
-sword = Weapon(s("sword"), 1, 3, 2, 0.5, 2, ASCII.drawsword, ASCII.drawswordcrit, sounds.swordsound)
+sword = Weapon(s("sword"), 8, 12, 10, 0.5, 2, ASCII.drawsword, ASCII.drawswordcrit, sounds.swordsound)
 player.weapons.append(sword)
 print(f"Новое оружие получено: {sword.name}!")
 time.sleep(1.9)
 
 #Создание второго врага
-fatWorm = Enemy("Жирный червь", 15, 1, 2)
+fatWorm = Enemy("Жирный червь", 75, 5, 10)
 
 while fatWorm.alive == True:
     player.makeMove(fatWorm)
@@ -95,12 +97,12 @@ while len(player.spells) == 1:
     print("[1]Фаерболл! [2]Ледяной осколок")
     choice = get_key()
     match choice:
-        case 1: player.spells.append(FireSpell(s("fireball"), 2, 4, 3, 0.5, 3))
-        case 2: player.spells.append(IceSpell(s("iceshard"), 1, 2, 3, 0.5, 2))
+        case 1: player.spells.append(FireSpell(s("fireball"), 10, 20, 15, 0.5, 15))
+        case 2: player.spells.append(IceSpell(s("iceshard"), 5, 10, 15, 0.5, 2))
         case _: pass
 
 #Создание третьего врага
-wormKing = Enemy("Король червей", 30, 2, 3)
+wormKing = Enemy("Король червей", 150, 10, 15)
 
 while wormKing.alive == True:
     player.makeMove(wormKing)
