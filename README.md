@@ -22,7 +22,7 @@ pip install arcade
 
 ## How to run
 ```
-git clone https://github.com/yourusername/your-repo.git
+git clone https://github.com/decoyzzz/GAZEBL-studios.git
 cd your-repo
 python bossgame.py
 ```
