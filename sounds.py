@@ -7,7 +7,7 @@ else:
     basedir = os.path.dirname(os.path.abspath(__file__))
 
 
-#Звуки
+#Sounds
 swordsound = arcade.load_sound(f"{basedir}/sounds/sword.wav")
 healsound = arcade.load_sound(f"{basedir}/sounds/heal.wav")
 bossattack = arcade.load_sound(f"{basedir}/sounds/bossattack.wav")

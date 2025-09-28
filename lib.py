@@ -4,17 +4,17 @@ import importlib
 
 clear = lambda: os.system('cls')
 
-#Функция считывания нажатой клавиши
+# Function to read the pressed key
 def get_key():
-    # очищаем буфер
+    #clearing the buffer
     while msvcrt.kbhit():
         msvcrt.getch()
 
-    key = msvcrt.getch()  # читаем только свежую клавишу
+    key = msvcrt.getch()  # reading only the latest key press
     try:
         return int(key.decode())
     except ValueError:
-        return None  # если не цифра
+        return None  # if not a number
 
 
 _strings = None
@@ -37,7 +37,7 @@ def chooseLanguage():
     else:
         base_path = os.path.dirname(__file__)
 
-    # Добавляем путь к lang в sys.path, чтобы importlib его нашёл
+    #Adding the path to lang in sys.path so that importlib can find it
     sys.path.append(os.path.join(base_path, "lang"))
 
     _strings = importlib.import_module(f"{l}.strings").strings

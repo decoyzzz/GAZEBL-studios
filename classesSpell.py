@@ -33,7 +33,7 @@ class FireSpell(Spell):
             arcade.play_sound(sounds.fireballsound)
             print (f"{self.name} нанес: {self.damage} урона! Здоровье {target.name}: {target.hp}")
             
-            #шанс прока дот урона от огня
+            #chance to trigger fire DOT damage
             if random.random() < self.burningChance:
                 target.fire_dot_damage = self.burningStrength
 
@@ -43,7 +43,7 @@ class FireSpell(Spell):
                 arcade.play_sound(sounds.burningsound)
                 print(f"{target.name} загорелся и будет получать урон от огня!")
         
-        #Если не хватает маны
+        #If there is not enough mana
         else:
             spellcaster.getDamage(1)
            
@@ -80,7 +80,7 @@ class IceSpell(Spell):
             return
                                 
 
-        #Если не хватает маны
+        #If there is not enough mana
         else:
             spellcaster.getDamage(1)
 

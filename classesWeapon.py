@@ -21,7 +21,7 @@ class Weapon:
     def attack(self, attacker, target):
         self.damage = random.randint(self.minDamage, self.maxDamage)
 
-        #крит для оружия
+        #Crit
         if random.random() < self.critChance:
             attacker.restoreMana(self.manaPerHit)
             self.damage = self.damage * self.critMultiplier
