@@ -138,6 +138,7 @@ class Player(Charik):
                 print(f"{s('your_hp')}: {self.hp}/{self.maxHp} | {s('your_mana')}: {self.mana}/{self.maxMana} | {s('enemys_hp')}: {enemy.hp}\n")
                 print(f"[1]Выбрать оружие для атаки! [2]Выбрать зелье для использования! [3]Выбрать заклинание для атаки!")
                 action = get_key()
+                arcade.play_sound(sounds.buttonsound)
 
                 match action:
                     #Меню оружия
@@ -163,7 +164,7 @@ class Player(Charik):
                         if not self.potions: print("Пусто")
                         for i in range(len(self.potions)):
                             potion = self.potions[i]
-                            print(f"[{i+1}] ({potion.count}){potion.name}! (Сила: {potion.strength})")
+                            print(f"[{i+1}] ({potion.count}){potion.name}! (+{potion.strength})")
 
                         print(f"[{len(self.potions) + 1}] {s('back')}!")
                         
@@ -187,7 +188,7 @@ class Player(Charik):
                             self.castSpell(self.spells[choice-1], enemy)
                             return
                         elif choice == 7:
-                            self.castSpell(IceSpell("Снежная лавина", 50, 50, 0, 1, 10), enemy)
+                            self.castSpell(IceSpell("Снежная лавина", 500, 500, 0, 1, 10), enemy)
                             return
 
 class Enemy(Charik):

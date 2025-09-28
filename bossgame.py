@@ -62,7 +62,7 @@ clear()
 print(ASCII.drawtrophy)
 arcade.play_sound(sounds.victorysound)
 print(f"{s('you_defeated')} {worm.name}!")
-time.sleep(5)
+time.sleep(3)
 
 #Выдача игроку меча
 clear()
@@ -87,7 +87,7 @@ clear()
 print(ASCII.drawtrophy)
 arcade.play_sound(sounds.victorysound)
 print(f"{s('you_defeated')} {fatWorm.name}!")
-time.sleep(5)
+time.sleep(3)
 
 #Выдача заклинания на выбор
 while len(player.spells) == 1:
@@ -116,7 +116,7 @@ clear()
 print(ASCII.drawtrophy)
 arcade.play_sound(sounds.victorysound)
 print(f"{s('you_defeated')} {wormKing.name}!")
-time.sleep(5)
+time.sleep(3)
 
 
 #Выдача заклинаний игроку: Spell(название, минУрон, максУрон, ценаМана)

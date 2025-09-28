@@ -41,7 +41,7 @@ class FireSpell(Spell):
                 clear()
                 print(ASCII.drawbossfiredamage)
                 arcade.play_sound(sounds.burningsound)
-                print(f"{target.name} загорелся на {self.burningStrength} хода(ов)!")
+                print(f"{target.name} загорелся и будет получать урон от огня!")
         
         #Если не хватает маны
         else:
