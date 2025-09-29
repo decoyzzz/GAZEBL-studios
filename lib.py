@@ -24,7 +24,7 @@ def chooseLanguage():
     while l not in ("en","ru"):
         clear()
         print("Choose language / Выберите язык ")
-        print("[1] English(WIP) [2] Русский")
+        print("[1] English [2] Русский")
         choice = get_key()
 
         match choice:

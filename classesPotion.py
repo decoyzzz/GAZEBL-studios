@@ -3,6 +3,7 @@ import arcade
 import sounds
 
 import ASCII
+from lib import s
 
 clear = lambda: os.system('cls')
 
@@ -21,7 +22,7 @@ class HealPotion(Potion):
             clear()
             print(ASCII.drawheal)
             arcade.play_sound(sounds.healsound)
-            print(f"{recipient.name} выпил {self.name}. Текущее здоровье: {recipient.hp}")
+            print(f"{recipient.name} {s('drinks')} {self.name}. {s('your_hp')}: {recipient.hp}")
             return
 
 class ManaPotion(Potion):
@@ -33,5 +34,5 @@ class ManaPotion(Potion):
         clear()
         print(ASCII.drawtemplate)
         arcade.play_sound(sounds.healsound)
-        print(f"{recipient.name} выпил {self.name}. Текущая мана: {recipient.mana}")
+        print(f"{recipient.name} {s('drinks')} {self.name}. {s('your_mana')}: {recipient.mana}")
         return

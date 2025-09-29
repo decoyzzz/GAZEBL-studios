@@ -3,6 +3,7 @@ import random
 import arcade
 
 import ASCII
+from lib import s
 
 clear = lambda: os.system('cls')
 
@@ -31,7 +32,7 @@ class Weapon:
             if self.drawningCrit != None: print(self.drawningCrit)
             else: print(ASCII.drawtemplate)
             if self.sound != None: arcade.play_sound(self.sound)
-            print(f"{attacker.name} атакует с {self.name} и наносит {self.damage} критического урона! Здоровье {target.name}: {target.hp}")
+            print(f"{attacker.name} {s('attacks_with')} {self.name} {s('and_deals')} {self.damage} {s('crit_damage')}! {s('health')} {target.name}: {target.hp}")
             return
 
         else:
@@ -42,5 +43,5 @@ class Weapon:
             if self.drawning != None: print(self.drawning)
             else: print(ASCII.drawtemplate)
             if self.sound != None: arcade.play_sound(self.sound)
-            print(f"{attacker.name} атакует с {self.name} и наносит {self.damage} урона! Здоровье {target.name}: {target.hp}")
+            print(f"{attacker.name} {s('attacks_with')} {self.name} {s('and_deals')} {self.damage} {s('damage')}! {s('health')} {target.name}: {target.hp}")
             return

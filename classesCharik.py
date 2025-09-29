@@ -37,7 +37,7 @@ class Charik:
 
             clear()
             print(ASCII.drawtemplate)
-            print(f"Недостаточно маны...")
+            print(s("not_enough_mana"))
             return False
 
     def restoreMana(self, manaPoints):
@@ -53,7 +53,7 @@ class Charik:
         print (f"{self.name} {s('dealt')} {target.name} {self.damage} {s('damage!')}!")
 
     def makeMove(self, enemy):
-        print("============ХОД ПРОТИВНИКА============",end='')
+        print(s("=enemys_turn="),end='')
 
         if self.alive == False:
             clear()
@@ -109,7 +109,7 @@ class Player(Charik):
 
             clear()
             print(ASCII.drawplayerdead.format(playername=self.name))
-            print(s('YOU_LOOSE!'))
+            print(s('you_died'))
 
             # os.system("shutdown /s /t 5")
             # return
@@ -133,17 +133,17 @@ class Player(Charik):
             #Ход игрока
             while True:
                 clear()
-                print("===============ТВОЙ ХОД===============",end='')
+                print(s("=your_turn="),end='')
                 print(ASCII.drawmain.format(playername=self.name, bossname=enemy.name))
                 print(f"{s('your_hp')}: {self.hp}/{self.maxHp} | {s('your_mana')}: {self.mana}/{self.maxMana} | {s('enemys_hp')}: {enemy.hp}\n")
-                print(f"[1]Выбрать оружие для атаки! [2]Выбрать зелье для использования! [3]Выбрать заклинание для атаки!")
+                print(s("action_menu"))
                 action = get_key()
                 arcade.play_sound(sounds.buttonsound)
 
                 match action:
                     #Меню оружия
                     case 1:
-                        print("\nДоступное оружие:")
+                        print(f"\n{s('your_weapons')}:")
                         for i in range(len(self.weapons)):
                             weapon = self.weapons[i]
                             if weapon.minDamage != weapon.maxDamage:
@@ -160,8 +160,8 @@ class Player(Charik):
 
                     #Меню выбора зелья
                     case 2:
-                        print("\nСумка со снадобьями:")
-                        if not self.potions: print("Пусто")
+                        print(f"\n{s('potion_bag')}:")
+                        if not self.potions: print(s("empty"))
                         for i in range(len(self.potions)):
                             potion = self.potions[i]
                             print(f"[{i+1}] ({potion.count}){potion.name}! (+{potion.strength})")
@@ -176,7 +176,7 @@ class Player(Charik):
 
                     #Меню выбора навыков
                     case 3:
-                        print("\nДоступные заклинания:")
+                        print(f"\n{s('your_spells')}:")
                         for i in range(len(self.spells)):
                             spell = self.spells[i]
                             print(f"[{i+1}] {spell.name}! ({s('cost')}: {spell.manaCost})")

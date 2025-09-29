@@ -26,7 +26,7 @@ clear()
 playername = input(s("enter_your_name"))
 while len(playername) > 5 or len(playername) < 3:
     clear()
-    print("Размер имени от 3 до 5 символов...")
+    print(s("name_restriction"))
     playername = input(s("enter_your_name"))
 
 #Usernames for tests
@@ -43,13 +43,13 @@ stick = Weapon(s("wooden_stick"), 5, 5, 5, 0.2, 5, None, None, sounds.sticksound
 player.weapons.append(stick)
 
 # Giving the player a potion
-player.potions.append(HealPotion("Зелье здоровья", 2, 20))
-player.potions.append(ManaPotion("Зелье магии", 2, 25))
+player.potions.append(HealPotion(s("heal_spell"), 2, 20))
+player.potions.append(ManaPotion(s("magic_spell"), 2, 25))
 
-player.spells.append(HealSpell("Лечение", 20, 25))
+player.spells.append(HealSpell(s("healing"), 20, 25))
     
 # Creating the first enemy
-worm = Enemy("Червь", 25, 5, 5)
+worm = Enemy(s("worm"), 25, 5, 5)
 
 while worm.alive == True:
     player.makeMove(worm)
@@ -71,11 +71,11 @@ clear()
 print(ASCII.drawtemplate)
 sword = Weapon(s("sword"), 8, 12, 10, 0.5, 2, ASCII.drawsword, ASCII.drawswordcrit, sounds.swordsound)
 player.weapons.append(sword)
-print(f"Новое оружие получено: {sword.name}!")
+print(f"{s('new_weapon_recieved')}: {sword.name}!")
 time.sleep(1.9)
 
 # Creating the second enemy
-fatWorm = Enemy("Жирный червь", 75, 5, 10)
+fatWorm = Enemy(s("fat_worm"), 75, 5, 10)
 
 while fatWorm.alive == True:
     player.makeMove(fatWorm)
@@ -95,8 +95,8 @@ time.sleep(3)
 while len(player.spells) == 1:
     clear()
     print(ASCII.drawtemplate)
-    print("Тебе доступно 1 заклинание на выбор:")
-    print("[1]Фаерболл! [2]Ледяной осколок")
+    print(f"{s('choose_a_spell')}:")
+    print(f"[1]{s('fireball')}! [2]{s('iceshard')}")
     choice = get_key()
     match choice:
         case 1: player.spells.append(FireSpell(s("fireball"), 10, 20, 15, 0.5, 15))
@@ -104,7 +104,7 @@ while len(player.spells) == 1:
         case _: pass
 
 #Third enemy creating
-wormKing = Enemy("Король червей", 150, 10, 15)
+wormKing = Enemy(s("worm_king"), 150, 10, 15)
 
 while wormKing.alive == True:
     player.makeMove(wormKing)

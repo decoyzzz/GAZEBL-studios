@@ -5,6 +5,7 @@ import time
 
 import ASCII
 import sounds
+from lib import s
 
 clear = lambda: os.system('cls')
 
@@ -31,7 +32,7 @@ class FireSpell(Spell):
             clear()
             print(ASCII.drawfireballsucces)
             arcade.play_sound(sounds.fireballsound)
-            print (f"{self.name} нанес: {self.damage} урона! Здоровье {target.name}: {target.hp}")
+            print (f"{self.name} {s('deals')} {self.damage} {s('damage')}! {s('health')} {target.name}: {target.hp}")
             
             #chance to trigger fire DOT damage
             if random.random() < self.burningChance:
@@ -41,15 +42,15 @@ class FireSpell(Spell):
                 clear()
                 print(ASCII.drawbossfiredamage)
                 arcade.play_sound(sounds.burningsound)
-                print(f"{target.name} загорелся и будет получать урон от огня!")
+                print(f"{target.name} {s('caught_fire_and_will_take_burn_damage')}!")
         
         #If there is not enough mana
         else:
-            spellcaster.getDamage(1)
+            spellcaster.getDamage(5)
            
             clear()
             print(ASCII.drawfireballfailed)
-            print (f"{self.name} взорвался в руке {spellcaster.name} и нанёс 1 урона! Текущее здоровье: {spellcaster.hp}")
+            print (f"{self.name} {s('exploded_in')} {spellcaster.name}{s('s_hand')} {s('and_dealt_5_damage')}! {s('health')}: {spellcaster.hp}")
 
 class IceSpell(Spell):
     def __init__(self, name, minDamage, maxDamage, manaCost, freezeChance, freezeStrength):
@@ -67,7 +68,7 @@ class IceSpell(Spell):
             clear()
             print(ASCII.drawiceshardsucces)
             arcade.play_sound(sounds.iceshardsound)
-            print(f"{self.name} нанёс {self.damage} урона! Здоровье {target.name}: {target.hp}")
+            print(f"{self.name} {s('deals')} {self.damage} {s('damage')}! {s('health')} {target.name}: {target.hp}")
 
             if random.random() < self.freezeChance:
                 target.freezebuildup = self.freezeStrength
@@ -75,18 +76,18 @@ class IceSpell(Spell):
                 time.sleep(1.9)
                 clear()
                 print(ASCII.drawbossfreeze)
-                print(f"{self.name} заморозил {target.name} на {self.freezeStrength} хода(ов)!")
+                print(f"{self.name} {s('freezed')} {target.name} {s('for')} {self.freezeStrength} {s('turns')}!")
                                     
             return
                                 
 
         #If there is not enough mana
         else:
-            spellcaster.getDamage(1)
+            spellcaster.getDamage(5)
 
             clear()
             print(ASCII.drawfireballfailed)
-            print(f"{self.name} обморозил руку и нанёс 1 урона! Текущее здоровье: {spellcaster.hp} ")
+            print(f"{self.name} {s('froze_the_hand_and_dealt_5_damage')}! {s('health')}: {spellcaster.hp} ")
             return
         
 class HealSpell(Spell):
@@ -102,5 +103,5 @@ class HealSpell(Spell):
 
             clear()
             print(ASCII.drawfireballfailed)
-            print(f"{spellcaster.name} использует лечащее заклинание! Здоровье {spellcaster.name}: {spellcaster.hp}")                 
+            print(f"{spellcaster.name} {s('casts_healing_spell')}! {s('health')} {spellcaster.name}: {spellcaster.hp}")                 
             return
