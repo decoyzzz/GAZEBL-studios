@@ -54,5 +54,7 @@ strings = {
     "=enemys_turn=" : "===========RUCH PRZECIWNIKA===========",
     "=your_turn=" : "==============TWÓJ RUCH===============",
     "your_spells" : "Twoje zaklęcia",
-    "crit" : "Kryt"
+    "crit" : "Kryt",
+    "heals" : "Regeneruje",
+    "freeze" : "Zamrożenie"
 }

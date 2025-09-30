@@ -54,5 +54,7 @@ strings = {
     "action_menu" : "[1] Choose a weapon to attack! [2] Choose a potion to use! [3] Choose a spell to cast!",
     "=enemys_turn=" : "==============ENEMY TURN==============",
     "=your_turn=" : "==============YOUR TURN===============",
-    "crit" : "Crit"
+    "crit" : "Crit",
+    "heals" : "Heals",
+    "freeze" : "Freeze"
 }

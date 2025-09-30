@@ -179,7 +179,7 @@ class Player(Charik):
                         print(f"\n{s('your_spells')}:")
                         for i in range(len(self.spells)):
                             spell = self.spells[i]
-                            print(f"[{i+1}] {spell.name}! ({s('cost')}: {spell.manaCost})")
+                            print(f"[{i+1}] {spell.info()}")
 
                         print(f"[{len(self.spells) + 1}] {s('back')}!")
                         

@@ -52,6 +52,13 @@ class FireSpell(Spell):
             print(ASCII.drawfireballfailed)
             print (f"{self.name} {s('exploded_in')} {spellcaster.name}{s('s_hand')} {s('and_dealt_5_damage')}! {s('health')}: {spellcaster.hp}")
 
+    def info(self):
+        if self.minDamage == self.maxDamage:
+            text = f"{self.name}! ({s('Damage')}: {self.minDamage}) ({s('ignition')}: {int(self.burningChance * 100)}%) ({s('cost')}: {self.manaCost})"
+        else:
+            text = f"{self.name}! ({s('Damage')}: {self.minDamage}-{self.maxDamage}) ({s('ignition')}: {int(self.burningChance * 100)}%) ({s('cost')}: {self.manaCost})"
+        return text
+
 class IceSpell(Spell):
     def __init__(self, name, minDamage, maxDamage, manaCost, freezeChance, freezeStrength):
         super().__init__(name, minDamage, maxDamage, manaCost)
@@ -89,6 +96,13 @@ class IceSpell(Spell):
             print(ASCII.drawfireballfailed)
             print(f"{self.name} {s('froze_the_hand_and_dealt_5_damage')}! {s('health')}: {spellcaster.hp} ")
             return
+    
+    def info(self):
+        if self.minDamage == self.maxDamage:
+            text = f"{self.name}! ({s('Damage')}: {self.minDamage}) ({s('freeze')}: {int(self.freezeChance * 100)}%) ({s('cost')}: {self.manaCost})"
+        else:
+            text = f"{self.name}! ({s('Damage')}: {self.minDamage}-{self.maxDamage}) ({s('freeze')}: {int(self.freezeChance * 100)}%) ({s('cost')}: {self.manaCost})"
+        return text
         
 class HealSpell(Spell):
     def __init__(self, name, healPoints, manaCost):
@@ -105,3 +119,7 @@ class HealSpell(Spell):
             print(ASCII.drawfireballfailed)
             print(f"{spellcaster.name} {s('casts_healing_spell_and_restores')} {self.healPoints}! {s('health')} {spellcaster.name}: {spellcaster.hp}")                 
             return
+        
+    def info(self):
+        text = f"{self.name}! ({s('heals')}: {self.healPoints}) ({s('cost')}: {self.manaCost})"
+        return text
