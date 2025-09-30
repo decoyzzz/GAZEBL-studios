@@ -208,4 +208,4 @@ class Enemy(Character):
         clear()
         print(ASCII.drawbossattack)
         arcade.play_sound(sounds.bossattack)
-        print (f"{self.name} {s('dealt')} {target.name} {self.damage} {s('damage!')}!")
+        print (f"{self.name} {s('dealt')} {target.name} {self.damage} {s('damage')}!")
