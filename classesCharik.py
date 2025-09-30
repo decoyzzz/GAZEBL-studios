@@ -50,7 +50,7 @@ class Charik:
         clear()
         print(ASCII.drawbossattack)
         arcade.play_sound(sounds.bossattack)
-        print (f"{self.name} {s('dealt')} {target.name} {self.damage} {s('damage!')}!")
+        print (f"{self.name} {s('dealt')} {target.name} {self.damage} {s('damage')}!")
 
     def makeMove(self, enemy):
         print(s("=enemys_turn="),end='')
@@ -147,9 +147,9 @@ class Player(Charik):
                         for i in range(len(self.weapons)):
                             weapon = self.weapons[i]
                             if weapon.minDamage != weapon.maxDamage:
-                                print(f"[{i+1}] {weapon.name}! ({s('Damage')}: {weapon.minDamage}-{weapon.maxDamage})")
+                                print(f"[{i+1}] {weapon.name}! ({s('Damage')}: {weapon.minDamage}-{weapon.maxDamage}) ({s('crit')}: {int(weapon.critChance*100)}% x{weapon.critMultiplier})")
                             else : 
-                                print(f"[{i+1}] {weapon.name}! ({s('Damage')}: {weapon.minDamage})")
+                                print(f"[{i+1}] {weapon.name}! ({s('Damage')}: {weapon.minDamage}) ({s('crit')}: {int(weapon.critChance*100)}% x{weapon.critMultiplier})")
 
                         print(f"[{len(self.weapons) + 1}] {s('back')}!")
                         

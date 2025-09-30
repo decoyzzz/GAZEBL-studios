@@ -63,7 +63,7 @@ while worm.alive == True:
 clear()
 print(ASCII.drawtrophy)
 arcade.play_sound(sounds.victorysound)
-print(f"{s('you_defeated')} {worm.name}!")
+print(f"{s('you_defeated')}: {worm.name}!")
 time.sleep(3)
 
 #Giving the player a sword 
@@ -88,7 +88,7 @@ while fatWorm.alive == True:
 clear()
 print(ASCII.drawtrophy)
 arcade.play_sound(sounds.victorysound)
-print(f"{s('you_defeated')} {fatWorm.name}!")
+print(f"{s('you_defeated')}: {fatWorm.name}!")
 time.sleep(3)
 
 # Giving the player 1 spell to choose
@@ -117,7 +117,7 @@ while wormKing.alive == True:
 clear()
 print(ASCII.drawtrophy)
 arcade.play_sound(sounds.victorysound)
-print(f"{s('you_defeated')} {wormKing.name}!")
+print(f"{s('you_defeated')}: {wormKing.name}!")
 time.sleep(3)
 
 

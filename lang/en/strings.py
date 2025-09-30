@@ -21,7 +21,7 @@ strings = {
     "enemys_hp" : "Enemy's hp",
     "Damage" : "Damage",
     "back" : "Back",
-    "cost" : "Cost",
+    "cost" : "Mana required",
     "name_restriction" : "The name must be between 3 and 5 characters...",
     "heal_spell" : "Heal spell",
     "magic_spell" : "Magic spell",
@@ -48,10 +48,11 @@ strings = {
     "freezed" : "freezed",
     "for" : "for",
     "turns" : "turn(s)",
-    "casts_healing_spell" : "casts healing spell",
+    "casts_healing_spell_and_restores" : "casts healing spell and restores",
     "froze_the_hand_and_dealt_5_damage" : "froze the hand and dealt 5 damage",
     "and_dealt_5_damage" : "and dealt 5 damage",
-    "action_menu" : "[1] Choose a weapon to attack! [2] Choose a potion to use! [3] Choose a spell to attack!",
+    "action_menu" : "[1] Choose a weapon to attack! [2] Choose a potion to use! [3] Choose a spell to cast!",
     "=enemys_turn=" : "==============ENEMY TURN==============",
-    "=your_turn=" : "==============YOUR TURN==============="
+    "=your_turn=" : "==============YOUR TURN===============",
+    "crit" : "Crit"
 }

@@ -93,15 +93,15 @@ class IceSpell(Spell):
 class HealSpell(Spell):
     def __init__(self, name, healPoints, manaCost):
         self.name = name
-        self.healPonts = healPoints
+        self.healPoints = healPoints
         self.manaCost = manaCost
 
     def cast(self, spellcaster, target):
         if spellcaster.useMana(self.manaCost):
             
-            spellcaster.getHealed(self.healPonts)
+            spellcaster.getHealed(self.healPoints)
 
             clear()
             print(ASCII.drawfireballfailed)
-            print(f"{spellcaster.name} {s('casts_healing_spell')}! {s('health')} {spellcaster.name}: {spellcaster.hp}")                 
+            print(f"{spellcaster.name} {s('casts_healing_spell_and_restores')} {self.healPoints}! {s('health')} {spellcaster.name}: {spellcaster.hp}")                 
             return

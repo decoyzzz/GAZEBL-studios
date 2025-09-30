@@ -21,15 +21,16 @@ _strings = None
 l = None
 def chooseLanguage():
     global l, _strings
-    while l not in ("en","ru"):
+    while l not in ("en","ru","pl"):
         clear()
-        print("Choose language / Выберите язык ")
-        print("[1] English [2] Русский")
+        print("Choose language / Wybierz język / Выберите язык ")
+        print("[1] English [2] Polski [3] Русский")
         choice = get_key()
 
         match choice:
             case 1: l = "en"
-            case 2: l = "ru"
+            case 2: l = "pl"
+            case 3: l = "ru"
 
     if getattr(sys, 'frozen', False):
         # exe
