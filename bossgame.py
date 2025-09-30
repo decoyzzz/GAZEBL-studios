@@ -9,7 +9,7 @@ import sounds
 import ASCII
 from lib import chooseLanguage, get_key, s
 
-from classesCharik import Player, Enemy
+from classesCharacter import Player, Enemy
 from classesSpell import FireSpell, IceSpell, HealSpell
 from classesWeapon import Weapon
 from classesPotion import HealPotion, ManaPotion

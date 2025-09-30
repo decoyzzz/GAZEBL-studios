@@ -10,7 +10,7 @@ from classesSpell import IceSpell
 
 clear = lambda: os.system('cls')
 
-class Charik:
+class Character:
 
     def __init__(self,name = "unnamed Charik", maxHp = 10):
         self.name = name
@@ -84,7 +84,7 @@ class Charik:
                 self.fire_dot_damage -= 5
 
 
-class Player(Charik):
+class Player(Character):
 
     def __init__(self, name="Player", maxHp=100, mana=0, maxMana = 100):
         super().__init__(name, maxHp)
@@ -191,7 +191,7 @@ class Player(Charik):
                             self.castSpell(IceSpell("Снежная лавина", 500, 500, 0, 1, 10), enemy)
                             return
 
-class Enemy(Charik):
+class Enemy(Character):
     def __init__(self, name = "unnamed Enemy", hp = 10, minDamage = 1, maxDamage = 3):
         self.name = name
         self.hp = hp
