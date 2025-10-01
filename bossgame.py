@@ -43,9 +43,9 @@ stick = Weapon(s("wooden_stick"), 5, 5, 5, 0.2, 5, None, None, sounds.sticksound
 player.weapons.append(stick)
 
 ####################
-player.spells.append(FireSpell(s("fireball"), 2, 4, 15, 0.5, 15))
-player.spells.append(IceSpell(s("iceshard"), 1, 2, 15, 0.5, 2))
-player.spells.append(FireSpell(s("ignition"), 0, 1, 10, 1, 2))
+# player.spells.append(FireSpell(s("fireball"), 2, 4, 15, 0.5, 15))
+# player.spells.append(IceSpell(s("iceshard"), 1, 2, 15, 0.5, 2))
+# player.spells.append(FireSpell(s("ignition"), 0, 1, 10, 1, 2))
 ####################
 
 # Giving the player a potion
