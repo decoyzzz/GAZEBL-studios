@@ -14,7 +14,7 @@ from classesSpell import FireSpell, IceSpell, HealSpell
 from classesWeapon import Weapon
 from classesPotion import HealPotion, ManaPotion
 
-clear = lambda: os.system('cls')
+clear = lambda: os.system('cls' if os.name == 'nt' else 'clear')
 
 #LOX 4
 

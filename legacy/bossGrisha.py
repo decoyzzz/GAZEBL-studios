@@ -8,7 +8,7 @@ import sounds
 import lib
 
 def bossGrishaCycle(playerName, playerHp, playerMana):
-    clear = lambda: os.system('cls')
+    clear = lambda: os.system('cls' if os.name == 'nt' else 'clear')
 
     bosshp = int(33)
     fire_dot_damage = -1

@@ -8,7 +8,7 @@ import sounds
 from lib import s, get_key
 from classesSpell import IceSpell
 
-clear = lambda: os.system('cls')
+clear = lambda: os.system('cls' if os.name == 'nt' else 'clear')
 
 class Character:
 
@@ -130,7 +130,7 @@ class Player(Character):
             #Variables for the player’s turn
             self.heal = random.randint(1, 3)
             
-            #Ход игрока
+            #player’s turn
             while True:
                 clear()
                 print(s("=your_turn="),end='')

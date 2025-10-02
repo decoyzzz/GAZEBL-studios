@@ -5,7 +5,7 @@ import sounds
 import ASCII
 from lib import s
 
-clear = lambda: os.system('cls')
+clear = lambda: os.system('cls' if os.name == 'nt' else 'clear')
 
 class Potion:
     def __init__(self, name, count, strength):

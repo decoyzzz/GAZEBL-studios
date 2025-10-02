@@ -2,7 +2,7 @@ import os, sys
 import msvcrt
 import importlib
 
-clear = lambda: os.system('cls')
+clear = lambda: os.system('cls' if os.name == 'nt' else 'clear')
 
 # Function to read the pressed key
 def get_key():

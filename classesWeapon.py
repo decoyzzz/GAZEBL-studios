@@ -5,7 +5,7 @@ import arcade
 import ASCII
 from lib import s
 
-clear = lambda: os.system('cls')
+clear = lambda: os.system('cls' if os.name == 'nt' else 'clear')
 
 class Weapon:
     def __init__(self, name, minDamage, maxDamage, manaPerHit, critChance, critMultiplier, drawning, drawningCrit, sound):

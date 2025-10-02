@@ -7,7 +7,7 @@ import ASCII
 import sounds
 from lib import s
 
-clear = lambda: os.system('cls')
+clear = lambda: os.system('cls' if os.name == 'nt' else 'clear')
 
 class Spell:
     def __init__(self, name, minDamage, maxDamage, manaCost):
