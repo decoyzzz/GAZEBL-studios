@@ -127,7 +127,7 @@ class Player(Character):
             self.freezebuildup -= 1
 
         else:
-            #Переменные для хода игрока
+            #Variables for the player’s turn
             self.heal = random.randint(1, 3)
             
             #Ход игрока
@@ -141,7 +141,7 @@ class Player(Character):
                 arcade.play_sound(sounds.buttonsound)
 
                 match action:
-                    #Меню оружия
+                    #Weapon menu
                     case 1:
                         print(f"\n{s('your_weapons')}:")
                         for i in range(len(self.weapons)):
@@ -158,7 +158,7 @@ class Player(Character):
                             self.attackWithWeapon(self.weapons[choice-1], enemy)
                             return
 
-                    #Меню выбора зелья
+                    #Potion meny
                     case 2:
                         print(f"\n{s('potion_bag')}:")
                         if not self.potions: print(s("empty"))
@@ -174,7 +174,7 @@ class Player(Character):
                             return
 
 
-                    #Меню выбора навыков
+                    #Spell menu
                     case 3:
                         print(f"\n{s('your_spells')}:")
                         for i in range(len(self.spells)):
